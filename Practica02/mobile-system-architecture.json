@@ -1,0 +1,384 @@
+{
+    "schema_version":  1,
+    "diagram_type":  "architecture",
+    "meta":  {
+                 "title":  "Project Integrator Architecture",
+                 "output":  "index.html",
+                 "quality_profile":  "showcase",
+                 "views":  [
+                               {
+                                   "id":  "client-requests",
+                                   "label":  "Client requests",
+                                   "focus":  [
+                                                 "mobile",
+                                                 "pwa",
+                                                 "api",
+                                                 "postgres",
+                                                 "mongo"
+                                             ],
+                                   "note":  "Both frontends call FastAPI for application data."
+                               },
+                               {
+                                   "id":  "sign-in",
+                                   "label":  "Authentication",
+                                   "focus":  [
+                                                 "mobile",
+                                                 "pwa",
+                                                 "keycloak"
+                                             ],
+                                   "note":  "The clients authenticate with Keycloak independently of API requests."
+                               },
+                               {
+                                   "id":  "development",
+                                   "label":  "Development and source",
+                                   "focus":  [
+                                                 "docker",
+                                                 "compose",
+                                                 "git",
+                                                 "github"
+                                             ],
+                                   "note":  "Docker Compose runs local containers; Git tracks source hosted on GitHub."
+                               }
+                           ]
+             },
+    "components":  [
+                       {
+                           "id":  "mobile",
+                           "type":  "frontend",
+                           "label":  "Flutter Mobile App",
+                           "sublabel":  "Mobile client",
+                           "pos":  [
+                                       70,
+                                       140
+                                   ],
+                           "size":  [
+                                        170,
+                                        76
+                                    ]
+                       },
+                       {
+                           "id":  "pwa",
+                           "type":  "frontend",
+                           "label":  "PWA",
+                           "sublabel":  "Web client",
+                           "pos":  [
+                                       70,
+                                       360
+                                   ],
+                           "size":  [
+                                        170,
+                                        76
+                                    ]
+                       },
+                       {
+                           "id":  "keycloak",
+                           "type":  "security",
+                           "label":  "Keycloak",
+                           "sublabel":  "Authentication",
+                           "tag":  "OIDC / OAuth 2.0",
+                           "pos":  [
+                                       430,
+                                       80
+                                   ],
+                           "size":  [
+                                        170,
+                                        82
+                                    ]
+                       },
+                       {
+                           "id":  "api",
+                           "type":  "backend",
+                           "label":  "FastAPI REST API",
+                           "sublabel":  "Application services",
+                           "pos":  [
+                                       430,
+                                       360
+                                   ],
+                           "size":  [
+                                        170,
+                                        82
+                                    ]
+                       },
+                       {
+                           "id":  "postgres",
+                           "type":  "database",
+                           "label":  "PostgreSQL",
+                           "sublabel":  "Relational data",
+                           "pos":  [
+                                       730,
+                                       230
+                                   ],
+                           "size":  [
+                                        150,
+                                        72
+                                    ]
+                       },
+                       {
+                           "id":  "mongo",
+                           "type":  "database",
+                           "label":  "MongoDB",
+                           "sublabel":  "Document data",
+                           "pos":  [
+                                       730,
+                                       390
+                                   ],
+                           "size":  [
+                                        150,
+                                        72
+                                    ]
+                       },
+                       {
+                           "id":  "maps",
+                           "type":  "external",
+                           "label":  "Leaflet / Maps",
+                           "sublabel":  "External map service",
+                           "pos":  [
+                                       70,
+                                       560
+                                   ],
+                           "size":  [
+                                        170,
+                                        72
+                                    ]
+                       },
+                       {
+                           "id":  "docker",
+                           "type":  "cloud",
+                           "label":  "Docker",
+                           "sublabel":  "Container runtime",
+                           "pos":  [
+                                       430,
+                                       560
+                                   ],
+                           "size":  [
+                                        150,
+                                        72
+                                    ]
+                       },
+                       {
+                           "id":  "compose",
+                           "type":  "cloud",
+                           "label":  "Docker Compose",
+                           "sublabel":  "Local orchestration",
+                           "pos":  [
+                                       430,
+                                       700
+                                   ],
+                           "size":  [
+                                        170,
+                                        72
+                                    ]
+                       },
+                       {
+                           "id":  "git",
+                           "type":  "external",
+                           "label":  "Git",
+                           "sublabel":  "Version control",
+                           "pos":  [
+                                       730,
+                                       560
+                                   ],
+                           "size":  [
+                                        150,
+                                        72
+                                    ]
+                       },
+                       {
+                           "id":  "github",
+                           "type":  "external",
+                           "label":  "GitHub",
+                           "sublabel":  "Remote repository",
+                           "pos":  [
+                                       970,
+                                       560
+                                   ],
+                           "size":  [
+                                        150,
+                                        72
+                                    ]
+                       }
+                   ],
+    "boundaries":  [
+                       {
+                           "kind":  "region",
+                           "label":  "Client devices and browsers",
+                           "wraps":  [
+                                         "mobile",
+                                         "pwa"
+                                     ]
+                       },
+                       {
+                           "kind":  "security-group",
+                           "label":  "Application trust boundary",
+                           "wraps":  [
+                                         "api",
+                                         "postgres",
+                                         "mongo"
+                                     ]
+                       },
+                       {
+                           "kind":  "region",
+                           "label":  "External identity and map services",
+                           "wraps":  [
+                                         "keycloak",
+                                         "maps"
+                                     ]
+                       },
+                       {
+                           "kind":  "region",
+                           "label":  "Development environment",
+                           "wraps":  [
+                                         "docker",
+                                         "compose"
+                                     ]
+                       },
+                       {
+                           "kind":  "region",
+                           "label":  "Source control",
+                           "wraps":  [
+                                         "git",
+                                         "github"
+                                     ]
+                       }
+                   ],
+    "connections":  [
+                        {
+                            "id":  "mobile-login",
+                            "from":  "mobile",
+                            "to":  "keycloak",
+                            "label":  "OIDC sign-in",
+                            "variant":  "security"
+                        },
+                        {
+                            "id":  "pwa-login",
+                            "from":  "pwa",
+                            "to":  "keycloak",
+                            "label":  "OIDC sign-in",
+                            "variant":  "security",
+                            "fromSide":  "top",
+                            "toSide":  "top",
+                            "via":  [
+                                        [
+                                            155,
+                                            320
+                                        ],
+                                        [
+                                            20,
+                                            320
+                                        ],
+                                        [
+                                            20,
+                                            35
+                                        ],
+                                        [
+                                            515,
+                                            35
+                                        ]
+                                    ],
+                            "labelAt":  [
+                                            280,
+                                            35
+                                        ]
+                        },
+                        {
+                            "id":  "mobile-api",
+                            "from":  "mobile",
+                            "to":  "api",
+                            "label":  "HTTPS + access token",
+                            "variant":  "emphasis",
+                            "labelAt":  [
+                                            335,
+                                            270
+                                        ]
+                        },
+                        {
+                            "id":  "pwa-api",
+                            "from":  "pwa",
+                            "to":  "api",
+                            "label":  "HTTPS + access token",
+                            "variant":  "emphasis",
+                            "labelAt":  [
+                                            340,
+                                            430
+                                        ]
+                        },
+                        {
+                            "id":  "api-postgres",
+                            "from":  "api",
+                            "to":  "postgres",
+                            "label":  "SQL queries"
+                        },
+                        {
+                            "id":  "api-mongo",
+                            "from":  "api",
+                            "to":  "mongo",
+                            "label":  "Document queries",
+                            "labelDy":  20
+                        },
+                        {
+                            "id":  "pwa-maps",
+                            "from":  "pwa",
+                            "to":  "maps",
+                            "label":  "Map tiles",
+                            "variant":  "dashed",
+                            "fromSide":  "bottom",
+                            "toSide":  "top",
+                            "labelAt":  [
+                                            155,
+                                            450
+                                        ]
+                        },
+                        {
+                            "id":  "compose-docker",
+                            "from":  "compose",
+                            "to":  "docker",
+                            "label":  "Runs containers",
+                            "fromSide":  "top",
+                            "toSide":  "bottom"
+                        },
+                        {
+                            "id":  "git-github",
+                            "from":  "git",
+                            "to":  "github",
+                            "label":  "Push / pull",
+                            "variant":  "dashed",
+                            "fromSide":  "right",
+                            "toSide":  "left"
+                        }
+                    ],
+    "cards":  [
+                  {
+                      "dot":  "cyan",
+                      "title":  "Clients",
+                      "items":  [
+                                    "Flutter mobile app and PWA",
+                                    "Both authenticate with Keycloak",
+                                    "Both call FastAPI with access tokens"
+                                ]
+                  },
+                  {
+                      "dot":  "emerald",
+                      "title":  "Application and data",
+                      "items":  [
+                                    "FastAPI serves REST requests",
+                                    "API accesses PostgreSQL and MongoDB"
+                                ]
+                  },
+                  {
+                      "dot":  "violet",
+                      "title":  "External services",
+                      "items":  [
+                                    "Keycloak provides identity",
+                                    "Leaflet / Maps provides map data"
+                                ]
+                  },
+                  {
+                      "dot":  "amber",
+                      "title":  "Development and source",
+                      "items":  [
+                                    "Docker Compose orchestrates Docker containers",
+                                    "Git pushes and pulls source with GitHub"
+                                ]
+                  }
+              ]
+}
