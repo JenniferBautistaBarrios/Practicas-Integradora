@@ -536,11 +536,11 @@ Este primer boceto servirá como referencia para continuar con las siguientes et
 ---
 
 <p align="center">
-  🌷━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━🌷
+
   <br>
   💕 <strong>Práctica 02 — Integradora</strong> 💕
   <br>
   <em>Boceto de Arquitectura del Proyecto Integrador</em>
   <br>
-  🌷━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━🌷
+  
 </p>
