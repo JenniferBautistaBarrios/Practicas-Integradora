@@ -13,7 +13,7 @@
 
 <p align="center">
 
-**✨ [Ver Diagrama de Arquitectura Interactivo](https://diegomiguel04.github.io/Practicas-INTEGRADORA/Practica02/index.html) ✨**
+**✨ [Ver Diagrama de Arquitectura Interactivo](https://jenniferbautistabarrios.github.io/Practicas-Integradora/Practica02/index.html) ✨**
 
 </p>
 
