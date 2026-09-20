@@ -11,8 +11,8 @@ En este repositorio se encuentran las diferentes prácticas realizadas durante e
 | 🌷 Número | 📚 Nombre                                                                                                                                            | ✍️ Firmas |    💗 Estatus    |
 | :-------: | ---------------------------------------------------------------------------------------------------------------------------------------------------- | :-------: | :--------------: |
 |   **01**  | Metodología de Evaluación de la Asignatura                                                                                                           |     5     | **Finalizada ✅** |
-|   **02**  | [Boceto de Arquitectura de Proyecto Integrador con Archify](https://github.com/DiegoMiguel04/Practicas-INTEGRADORA/blob/master/Practica02/README.md) |     24    | **Finalizada ✅** |
-|   **03**  | [Boceto de Modelo Canvas con Archify](https://github.com/DiegoMiguel04/Practicas-INTEGRADORA/blob/master/Practica03/README.md)                       |     10    | **Finalizada ✅** |
+|   **02**  | [Boceto de Arquitectura de Proyecto Integrador con Archify](https://jenniferbautistabarrios.github.io/Practicas-Integradora/Practica02/index.html) |     24    | **Finalizada ✅** |
+|   **03**  | [Boceto de Modelo Canvas con Archify]()                       |     10    | **Finalizada ✅** |
 
 ---
 
@@ -30,7 +30,7 @@ Actividad enfocada en conocer y analizar la metodología de evaluación que se u
 
 Desarrollo de un primer boceto de la arquitectura del proyecto integrador utilizando **Archify** como herramienta de apoyo para la representación arquitectónica.
 
-👉 [Ver Práctica 02]()
+👉 [Ver Práctica 02](https://jenniferbautistabarrios.github.io/Practicas-Integradora/Practica02/index.html)
 
 ### 🎀 Práctica 03
 
