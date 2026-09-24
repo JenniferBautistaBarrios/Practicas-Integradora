@@ -1,6 +1,10 @@
 #           🌸 Spotify | Modelo Canvas 🎧
 
 <p align="center">
+  <img src="images/LOGOS-CARRERAS-TI.png" alt="Logo de la escuela" width="500">
+</p>
+
+<p align="center">
   💗✨ <strong>Modelo de Negocio de Spotify</strong> ✨💗
 </p>
 
