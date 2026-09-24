@@ -1,7 +1,7 @@
 #           🌸 Spotify | Modelo Canvas 🎧
 
 <p align="center">
-  <img src="images/LOGOS-CARRERAS-TI.png" alt="Logo de la escuela" width="500">
+  <img src="../LOGOS-CARRERAS-TI.png" alt="Logo de la escuela" width="500">
 </p>
 
 <p align="center">

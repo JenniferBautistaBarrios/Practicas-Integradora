@@ -3,7 +3,7 @@
 # 🌸 Repositorio de Prácticas — Integradora
 
 <p align="center">
-  <img src="images/LOGOS-CARRERAS-TI.png" alt="Logo de la escuela" width="500">
+  <img src="../LOGOS-CARRERAS-TI.png" alt="Logo de la escuela" width="500">
 </p>
 
 Bienvenido a mi repositorio de prácticas de la materia **Integradora**. 💗
