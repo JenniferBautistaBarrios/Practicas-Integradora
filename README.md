@@ -3,9 +3,8 @@
 # 🌸 Repositorio de Prácticas — Integradora
 
 <p align="center">
-  <img src="../LOGOS-CARRERAS-TI.png" alt="Logo de la escuela" width="500">
+  <img src="./LOGOS-CARRERAS-TI.png" alt="Logo de la escuela" width="500">
 </p>
-
 Bienvenido a mi repositorio de prácticas de la materia **Integradora**. 💗
 
 En este repositorio se encuentran las diferentes prácticas realizadas durante el curso, junto con sus respectivas evidencias y actividades.
