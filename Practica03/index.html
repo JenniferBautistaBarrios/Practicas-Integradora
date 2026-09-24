@@ -1,0 +1,209 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Modelo Canvas de Spotify, aplicación multiplataforma de música y audio."
+    />
+    <title>Spotify | Modelo Canvas</title>
+    <style>
+      :root { color-scheme: light; --spotify: #ec4899; --spotify-dark: #c02675; --ink: #4b2948; --muted: #806b80; --line: #f2c6dc; --paper: #fff; --surface: #fff1f7; --tint: #fce7f3; }
+      * { box-sizing: border-box; }
+      body { margin: 0; color: var(--ink); background: radial-gradient(ellipse at 12% 0%, #ffd9e9 0, transparent 36rem), var(--surface); font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; }
+      .page { max-width: 1720px; margin: 0 auto; padding: 46px clamp(18px, 4vw, 64px) 56px; }
+      .hero { display: flex; align-items: center; justify-content: space-between; gap: 24px; margin: 0 0 30px; }
+      .brand { display: flex; align-items: center; gap: 17px; }
+      .mark { display: grid; place-items: center; width: 54px; height: 54px; flex: 0 0 auto; border-radius: 18px; background: #4b2948; color: var(--spotify); font-size: 28px; font-weight: 900; box-shadow: 0 8px 22px #7a245026; }
+      h1 { margin: 0; font-size: clamp(1.7rem, 3vw, 2.7rem); line-height: 1.04; letter-spacing: -.055em; }
+      .subtitle, .date { margin: 8px 0 0; color: var(--muted); font-size: .94rem; }
+      .date { padding: 11px 15px; border: 1px solid #efc7da; border-radius: 14px; background: #ffffffad; text-align: right; line-height: 1.45; white-space: nowrap; }
+      .canvas { display: grid; grid-template-columns: 1fr 1.05fr 1.14fr 1fr 1fr; grid-template-rows: minmax(245px, 1fr) minmax(245px, 1fr) minmax(215px, .86fr); gap: 12px; }
+      .block { position: relative; isolation: isolate; padding: 21px; overflow: visible; border: 1px solid var(--line); border-radius: 16px; background: var(--paper); box-shadow: 0 3px 12px #14291a08; transition: transform .18s ease, box-shadow .18s ease, border-color .18s ease; }
+      .block .details { position: absolute; top: 52px; left: -1px; right: -1px; z-index: 4; padding: 7px 20px 19px; border: 1px solid #f0c5da; border-top: 0; border-radius: 0 0 16px 16px; background: #fff; box-shadow: 0 16px 30px #7a245020; visibility: hidden; opacity: 0; transform: translateY(-5px); transition: opacity .18s ease, transform .18s ease, visibility .18s; }
+      .block:hover, .block:focus-within { z-index: 5; transform: translateY(-2px); border-color: #e9a6c4; box-shadow: 0 12px 28px #7a245018; }
+      .block:hover .details, .block:focus-within .details { visibility: visible; opacity: 1; transform: translateY(0); }
+      .block:hover .summary, .block:focus-within .summary { visibility: hidden; }
+      .block .summary li { margin-bottom: 8px; }
+      .block:focus-visible { outline: 3px solid var(--spotify-dark); outline-offset: 2px; }
+      .block h2 { display: flex; align-items: center; gap: 9px; margin: 0 0 16px; color: #5b2a72; font-size: .77rem; letter-spacing: .085em; text-transform: uppercase; }
+      .block h2::before { content: ""; width: 9px; height: 9px; flex: 0 0 auto; border-radius: 3px; background: #f08ab8; transform: rotate(45deg); }
+      ul { margin: 0; padding: 0; list-style: none; }
+      li { position: relative; margin: 0 0 10px; padding-left: 14px; color: #5f4a62; font-size: .87rem; line-height: 1.45; }
+      li::before { content: ""; position: absolute; top: .58em; left: 0; width: 5px; height: 5px; border-radius: 50%; background: #d88aae; }
+      li:last-child { margin-bottom: 0; }
+
+      .partners { grid-column: 1; grid-row: 1 / span 2; }
+      .activities { grid-column: 2; grid-row: 1; }
+      .resources { grid-column: 2; grid-row: 2; }
+      .value { grid-column: 3; grid-row: 1 / span 2; border-color: #f0a8c9; background: linear-gradient(145deg, #ffd8e9, #ffffff 78%); }
+      .value h2 { color: var(--spotify-dark); }
+      .relationships { grid-column: 4; grid-row: 1; }
+      .channels { grid-column: 4; grid-row: 2; }
+      .segments { grid-column: 5; grid-row: 1 / span 2; }
+      .costs { grid-column: 1 / span 3; grid-row: 3; }
+      .revenue { grid-column: 4 / span 2; grid-row: 3; }
+      .split { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; }
+      .tag { display: inline-block; margin: 1px 4px 5px 0; padding: 5px 9px; border: 1px solid #f1bdd5; border-radius: 999px; background: var(--tint); color: #c02675; font-size: .73rem; font-weight: 650; }
+      .note { margin-top: 16px; color: var(--muted); font-size: .78rem; line-height: 1.4; }
+
+      @media (max-width: 960px) {
+        .canvas { grid-template-columns: repeat(2, 1fr); grid-template-rows: auto; }
+        .block { min-height: 220px; }
+        .partners, .activities, .resources, .value, .relationships, .channels, .segments, .costs, .revenue { grid-column: auto; grid-row: auto; }
+        .value, .segments { min-height: 300px; }
+        .costs, .revenue { min-height: 200px; }
+      }
+      @media (max-width: 600px) {
+        .page { padding: 25px 16px 36px; }
+        .hero { align-items: flex-start; flex-direction: column; gap: 14px; }
+        .date { text-align: left; }
+        .canvas { grid-template-columns: 1fr; gap: 10px; }
+
+        .block { min-height: 0; }
+        .split { grid-template-columns: 1fr; }
+      }
+      @media print {
+        .block .details { position: static; visibility: visible; opacity: 1; transform: none; padding: 12px 0 0; border: 0; box-shadow: none; }
+        @page { margin: 10mm; size: landscape; }
+        body { background: #fff; }
+        .page { max-width: none; padding: 0; }
+        .hero { margin-bottom: 12px; }
+        .canvas { border-radius: 0; box-shadow: none; }
+        .block { padding: 12px; }
+        li { margin-bottom: 5px; font-size: .76rem; }
+        .note { display: none; }
+      }
+    </style>
+  </head>
+  <body>
+    <main class="page">
+      <header class="hero">
+        <div class="brand">
+          <div class="mark" aria-hidden="true">≋</div>
+          <div>
+            <h1>Spotify · Modelo Canvas</h1>
+            <p class="subtitle">Aplicaci�n multiplataforma de música, podcasts y audiolibros</p>
+          </div>
+        </div>
+        <p class="date">Business Model Canvas<br />Septiembre de 2026</p>
+      </header>
+
+      <section class="canvas" aria-label="Business Model Canvas de Spotify">
+        <article class="block partners" tabindex="0">
+          <h2>Socios clave</h2><ul class="summary"><li>Sellos y distribuidoras aportan derechos y catálogo.</li><li>Creadores producen música, podcasts y otros formatos.</li><li>Anunciantes y socios tecnológicos conectan oferta, audiencia y servicio.</li></ul><div class="details">
+          <ul>
+            <li>Sellos discográficos, distribuidoras y artistas independientes.</li>
+            <li>Productoras, creadores y redes de podcasts.</li>
+            <li>Editoriales y titulares de derechos musicales.</li>
+            <li>Anunciantes, agencias y plataformas publicitarias.</li>
+            <li>Operadores móviles, fabricantes de dispositivos y tiendas de apps.</li>
+            <li>Proveedores de nube, pagos y analítica.</li>
+          </ul>
+        </div></article>
+
+        <article class="block activities" tabindex="0">
+          <h2>Actividades clave</h2><ul class="summary"><li>Licenciar y organizar contenido de audio.</li><li>Desarrollar y operar una experiencia confiable en todos los dispositivos.</li><li>Personalizar el descubrimiento y monetizar con anuncios y suscripciones.</li></ul><div class="details">
+          <ul>
+            <li>Licenciar, ingerir y gestionar el catálogo de audio.</li>
+            <li>Desarrollar apps, plataforma y reproducción confiable.</li>
+            <li>Personalizar descubrimiento, playlists y recomendaciones.</li>
+            <li>Adquirir, retener y dar soporte a usuarios.</li>
+            <li>Comercializar publicidad y suscripciones.</li>
+            <li>Medir audiencias y pagar regalías.</li>
+          </ul>
+        </div></article>
+
+        <article class="block resources" tabindex="0">
+          <h2>Recursos clave</h2><ul class="summary"><li>Cat�logo, licencias y metadatos.</li><li>Marca y comunidad global de oyentes.</li><li>Algoritmos, datos, infraestructura y equipos especializados.</li></ul><div class="details">
+          <ul>
+            <li>Marca global y base de usuarios.</li>
+            <li>Licencias, catálogo y metadatos de contenido.</li>
+            <li>Algoritmos, datos de escucha e infraestructura tecnol�gica.</li>
+            <li>Apps para móvil, web, escritorio, TV y automóvil.</li>
+            <li>Equipos de producto, datos, ventas y relaciones con creadores.</li>
+          </ul>
+        </div></article>
+
+        <article class="block value" tabindex="0">
+          <h2>Propuesta de valor</h2><ul class="summary"><li>Amplio catálogo de música y audio disponible en múltiples dispositivos.</li><li>Recomendaciones y playlists que ayudan a descubrir contenido.</li><li>Acceso gratuito con anuncios y opción Premium con beneficios adicionales.</li></ul><div class="details">
+          <ul>
+            <li>Acceso inmediato a un amplio catálogo de música y audio desde cualquier dispositivo.</li>
+            <li>Experiencia personal: recomendaciones, mixes, playlists y descubrimiento continuo.</li>
+            <li>Modelo freemium: escuchar sin pago con anuncios o eliminar anuncios con Premium.</li>
+            <li>Descargas y escucha sin conexión para usuarios Premium.</li>
+            <li>Una plataforma de alcance global para artistas, creadores y anunciantes.</li>
+          </ul>
+          <div class="note">
+            <span class="tag">Personalizaci�n</span><span class="tag">Multiplataforma</span><span class="tag">Freemium</span><span class="tag">Descubrimiento</span>
+          </div>
+        </div></article>
+
+        <article class="block relationships" tabindex="0">
+          <h2>Relación con clientes</h2><ul class="summary"><li>Alta y gestión de cuenta en autoservicio.</li><li>Recomendaciones y comunicaciones adaptadas a cada oyente.</li><li>Ayuda digital y planes para compartir la suscripción.</li></ul><div class="details">
+          <ul>
+            <li>Autoservicio digital y onboarding guiado.</li>
+            <li>Experiencia personalizada basada en hábitos de escucha.</li>
+            <li>Notificaciones, correos y campañas de retenci�n.</li>
+            <li>Soporte en línea, centro de ayuda y comunidad.</li>
+            <li>Planes compartidos: Duo, Familiar y Estudiantes.</li>
+          </ul>
+        </div></article>
+
+        <article class="block channels" tabindex="0">
+          <h2>Canales</h2><ul class="summary"><li>Apps móviles, escritorio y reproductor web.</li><li>Integración con televisores, consolas, altavoces y autos.</li><li>Tiendas de aplicaciones, socios comerciales y marketing digital.</li></ul><div class="details">
+          <ul>
+            <li>Aplicaciones iOS, Android, escritorio y web.</li>
+            <li>Smart TVs, consolas, altavoces, wearables y automóviles.</li>
+            <li>App Store, Google Play y sitio web propio.</li>
+            <li>Alianzas con telecomunicaciones, hardware y comercios.</li>
+            <li>Redes sociales, referidos y marketing digital.</li>
+          </ul>
+        </div></article>
+
+        <article class="block segments" tabindex="0">
+          <h2>Segmentos de clientes</h2><ul class="summary"><li>Oyentes Free con publicidad y suscriptores Premium.</li><li>Estudiantes y hogares con planes compartidos.</li><li>Creadores, titulares de derechos y anunciantes.</li></ul><div class="details">
+          <ul>
+            <li>Oyentes gratuitos que aceptan publicidad.</li>
+            <li>Suscriptores Premium individuales y de planes grupales.</li>
+            <li>Estudiantes y usuarios sensibles al precio.</li>
+            <li>Amantes de podcasts y audiolibros.</li>
+            <li>Artistas, sellos y creadores que buscan distribución y audiencia.</li>
+            <li>Anunciantes que buscan audiencias segmentadas.</li>
+          </ul>
+        </div></article>
+
+        <article class="block costs" tabindex="0">
+          <h2>Estructura de costos</h2><ul class="summary"><li>El mayor componente: licencias y regalías de contenido.</li><li>Tecnolog�a para producto, nube, datos y distribución.</li><li>Marketing, personal, soporte y acuerdos comerciales.</li></ul><div class="details">
+          <div class="split">
+            <ul>
+              <li>Regal�as y pagos por licencias de música y contenido.</li>
+              <li>Costos de adquisición o producción de podcasts y audiolibros.</li>
+              <li>Infraestructura cloud, CDN, almacenamiento y transmisión.</li>
+            </ul>
+            <ul>
+              <li>Desarrollo de producto, seguridad, datos e IA.</li>
+              <li>Marketing, ventas, alianzas y comisiones de plataformas.</li>
+              <li>Personal, operaciones, soporte y cumplimiento normativo.</li>
+            </ul>
+          </div>
+        </div></article>
+
+        <article class="block revenue" tabindex="0">
+          <h2>Fuentes de ingresos</h2><ul class="summary"><li>Suscripciones Premium individuales y grupales.</li><li>Publicidad en audio, video y formatos digitales para Free.</li><li>Paquetes con socios y otros formatos según disponibilidad.</li></ul><div class="details">
+          <div class="split">
+            <ul>
+              <li>Suscripciones Premium mensuales: Individual, Duo, Familiar y Estudiantes.</li>
+              <li>Planes y paquetes distribuidos mediante socios de telecomunicaciones.</li>
+            </ul>
+            <ul>
+              <li>Publicidad de audio, video, display y patrocinios para usuarios Free.</li>
+              <li>Ingresos por audiolibros, cuando están disponibles en el mercado.</li>
+            </ul>
+          </div>
+        </div></article>
+      </section>
+    </main>
+  </body>
+</html>

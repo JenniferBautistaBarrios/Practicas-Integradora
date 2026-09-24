@@ -1,4 +1,10 @@
+
+
 # 🌸 Repositorio de Prácticas — Integradora
+
+<p align="center">
+  <img src="../LOGOS-CARRERAS-TI.png" alt="Logo de la escuela" width="500">
+</p>
 
 Bienvenido a mi repositorio de prácticas de la materia **Integradora**. 💗
 
@@ -8,11 +14,11 @@ En este repositorio se encuentran las diferentes prácticas realizadas durante e
 
 ## 🎀 Tabla de Prácticas
 
-| 🌷 Número | 📚 Nombre                                                                                                                                            | ✍️ Firmas |    💗 Estatus    |
-| :-------: | ---------------------------------------------------------------------------------------------------------------------------------------------------- | :-------: | :--------------: |
-|   **01**  | Metodología de Evaluación de la Asignatura                                                                                                           |     5     | **Finalizada ✅** |
-|   **02**  | [Boceto de Arquitectura de Proyecto Integrador con Archify](https://jenniferbautistabarrios.github.io/Practicas-Integradora/Practica02/index.html) |     24    | **Finalizada ✅** |
-|   **03**  | [Boceto de Modelo Canvas con Archify]()                       |     10    | **Finalizada ✅** |
+| 🌷 Número | 📚 Nombre | ✍️ Firmas | 💗 Estatus |
+| :-------: | :-------- | :-------: | :--------: |
+| **01** | Metodología de Evaluación de la Asignatura | 5 | **Finalizada ✅** |
+| **02** | [Boceto de Arquitectura de Proyecto Integrador con Archify](https://jenniferbautistabarrios.github.io/Practicas-Integradora/Practica02/index.html) | 24 | **Finalizada ✅** |
+| **03** | [Boceto de Modelo Canvas con Archify](https://jenniferbautistabarrios.github.io/Practicas-Integradora/Practica03/index.html) | 10 | **Finalizada ✅** |
 
 ---
 
@@ -38,7 +44,7 @@ Desarrollo de un primer boceto de la arquitectura del proyecto integrador utiliz
 
 Elaboración de un boceto del **Modelo Canvas** utilizando Archify para representar los principales elementos relacionados con el proyecto integrador.
 
-👉 [Ver Práctica 03]()
+👉 [Ver Práctica 03](https://jenniferbautistabarrios.github.io/Practicas-Integradora/Practica03/index.html)
 
 ---
 
@@ -50,13 +56,13 @@ Todas las prácticas registradas actualmente se encuentran **finalizadas**. ✅
 
 ---
 
-### 🎀 Tecnologías y herramientas
+## 🎀 Tecnologías y herramientas
 
-* 💻 **Git & GitHub**
-* 🌸 **Archify**
-* 📐 Modelado y arquitectura de software
-* 📚 Documentación de proyectos
-* 🎨 Diseño de modelos y diagramas
+- 💻 **Git & GitHub**
+- 🌸 **Archify**
+- 📐 Modelado y arquitectura de software
+- 📚 Documentación de proyectos
+- 🎨 Diseño de modelos y diagramas
 
 ---
 

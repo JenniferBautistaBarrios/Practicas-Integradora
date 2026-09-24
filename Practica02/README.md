@@ -1,6 +1,10 @@
 # 🌸 Práctica 02 — Boceto de Arquitectura del Proyecto Integrador
 
 <p align="center">
+  <img src="../LOGOS-CARRERAS-TI.png" alt="Logo de la escuela" width="500">
+</p>
+
+<p align="center">
   💗✨ <strong>Práctica 02 — Integradora</strong> ✨💗
 </p>
 
