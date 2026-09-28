@@ -1,11 +1,11 @@
-#           🌸 Spotify | Modelo Canvas 🎧
+#           🌸 Netflix | Modelo Canvas 🎬
 
 <p align="center">
   <img src="../LOGOS-CARRERAS-TI.png" alt="Logo de la escuela" width="500">
 </p>
 
 <p align="center">
-  💗✨ <strong>Modelo de Negocio de Spotify</strong> ✨💗
+  💗✨ <strong>Modelo de Negocio de Netflix</strong> ✨💗
 </p>
 
 <p align="center">
@@ -16,17 +16,17 @@
 
 ## 💕 Modelo Canvas
 
-🔗 **[✨ Ver Modelo Canvas de Spotify ✨](https://jenniferbautistabarrios.github.io/Practicas-Integradora/Practica03/index.html)**
+🔗 **[✨ Ver Modelo Canvas de Netflix ✨](https://jenniferbautistabarrios.github.io/Practicas-Integradora/Practica03/index.html)**
 
 <p align="center">
-  <img src="spotify-model-canvas.png" alt="Spotify Modelo Canvas" width="900">
+  <img src="Netflix-model-canvas.png" alt="Netflix Modelo Canvas" width="900">
 </p>
 
 ---
 
 ## 🌷 Descripción
 
-Este proyecto presenta una representación visual del **modelo de negocio de Spotify** utilizando el marco de trabajo **Business Model Canvas**.
+Este proyecto presenta una representación visual del **modelo de negocio de Netflix** utilizando el marco de trabajo **Business Model Canvas**.
 
 El objetivo es organizar de manera clara los principales elementos que forman parte del modelo de negocio de la plataforma, permitiendo identificar cómo se relacionan sus diferentes componentes.
 
@@ -40,39 +40,39 @@ El modelo está compuesto por los siguientes elementos:
 
 ### 🌸 Socios clave
 
-Representa a los principales socios que participan en el funcionamiento de Spotify, incluyendo distribuidores, creadores, anunciantes y socios tecnológicos.
+Representa a los principales socios que participan en el funcionamiento de Netflix, incluyendo productores de contenido, estudios cinematográficos, empresas tecnológicas, proveedores de infraestructura y socios comerciales.
 
-### 🎵 Actividades clave
+### 🎬 Actividades clave
 
-Incluye las actividades necesarias para mantener el funcionamiento de la plataforma, como la gestión del contenido, el desarrollo del servicio y la personalización de la experiencia.
+Incluye las actividades necesarias para mantener el funcionamiento de la plataforma, como la producción y adquisición de contenido, desarrollo de la plataforma, distribución de contenido y personalización de la experiencia de los usuarios.
 
 ### 💎 Recursos clave
 
-Reúne los recursos utilizados por Spotify para ofrecer su servicio, como el catálogo, las licencias, la tecnología, los datos y la infraestructura.
+Reúne los recursos utilizados por Netflix para ofrecer su servicio, como su catálogo de contenido, producciones originales, tecnología, plataforma digital, infraestructura y datos de los usuarios.
 
 ### 💗 Propuesta de valor
 
-Presenta los principales beneficios que Spotify ofrece a sus usuarios, como el acceso a contenido de audio, recomendaciones personalizadas, playlists y diferentes opciones de acceso al servicio.
+Presenta los principales beneficios que Netflix ofrece a sus usuarios, como el acceso a películas, series, documentales y contenido original mediante una plataforma de streaming, con recomendaciones personalizadas y diferentes opciones de suscripción.
 
 ### 🤝 Relación con clientes
 
-Representa la manera en que Spotify mantiene la relación con sus usuarios mediante la gestión de cuentas, recomendaciones, comunicación, soporte y opciones de suscripción.
+Representa la manera en que Netflix mantiene la relación con sus usuarios mediante recomendaciones personalizadas, gestión de cuentas, soporte al cliente, perfiles y diferentes opciones de suscripción.
 
 ### 📱 Canales
 
-Muestra los diferentes medios mediante los cuales los usuarios pueden acceder a la plataforma, como aplicaciones móviles, escritorio, reproductor web y otros dispositivos compatibles.
+Muestra los diferentes medios mediante los cuales los usuarios pueden acceder a Netflix, como aplicaciones para dispositivos móviles, televisores inteligentes, computadoras, tabletas, consolas de videojuegos y reproductores compatibles.
 
 ### 👥 Segmentos de clientes
 
-Identifica los principales grupos que utilizan o participan en la plataforma, incluyendo usuarios gratuitos, suscriptores Premium, estudiantes, hogares, creadores, titulares de derechos y anunciantes.
+Identifica los principales grupos que utilizan la plataforma, incluyendo usuarios individuales, familias, estudiantes, hogares y personas interesadas en contenido de entretenimiento por streaming.
 
 ### 💰 Estructura de costos
 
-Representa los principales costos relacionados con el funcionamiento de Spotify, incluyendo licencias, infraestructura tecnológica, desarrollo, marketing y operaciones.
+Representa los principales costos relacionados con el funcionamiento de Netflix, incluyendo producción y adquisición de contenido, infraestructura tecnológica, desarrollo de la plataforma, marketing, personal y operaciones.
 
 ### 💵 Fuentes de ingresos
 
-Presenta las principales formas mediante las cuales Spotify obtiene ingresos, principalmente mediante suscripciones Premium y publicidad.
+Presenta las principales formas mediante las cuales Netflix obtiene ingresos, principalmente mediante suscripciones de los usuarios a sus diferentes planes y otras modalidades comerciales disponibles en determinados mercados.
 
 ---
 
@@ -112,5 +112,5 @@ El proyecto no requiere librerías externas ni instalaciones adicionales para po
 Practica03/
 │
 ├── 📄 index.html
-├── 🖼️ spotify-model-canvas.png
+├── 🖼️ Netflix-model-canvas.png
 └── 📄 README.md
