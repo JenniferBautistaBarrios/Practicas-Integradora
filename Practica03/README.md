@@ -19,7 +19,7 @@
 🔗 **[✨ Ver Modelo Canvas de Netflix ✨](https://jenniferbautistabarrios.github.io/Practicas-Integradora/Practica03/index.html)**
 
 <p align="center">
-  <img src="Netflix-model-canvas.png" alt="Netflix Modelo Canvas" width="900">
+  <img src="Netflix-model-canvas.png.png" alt="Netflix Modelo Canvas" width="900">
 </p>
 
 ---
