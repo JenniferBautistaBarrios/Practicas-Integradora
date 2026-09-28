@@ -1,209 +1,1663 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="es">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta
-      name="description"
-      content="Modelo Canvas de Spotify, aplicación multiplataforma de música y audio."
-    />
-    <title>Spotify | Modelo Canvas</title>
-    <style>
-      :root { color-scheme: light; --spotify: #ec4899; --spotify-dark: #c02675; --ink: #4b2948; --muted: #806b80; --line: #f2c6dc; --paper: #fff; --surface: #fff1f7; --tint: #fce7f3; }
-      * { box-sizing: border-box; }
-      body { margin: 0; color: var(--ink); background: radial-gradient(ellipse at 12% 0%, #ffd9e9 0, transparent 36rem), var(--surface); font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; }
-      .page { max-width: 1720px; margin: 0 auto; padding: 46px clamp(18px, 4vw, 64px) 56px; }
-      .hero { display: flex; align-items: center; justify-content: space-between; gap: 24px; margin: 0 0 30px; }
-      .brand { display: flex; align-items: center; gap: 17px; }
-      .mark { display: grid; place-items: center; width: 54px; height: 54px; flex: 0 0 auto; border-radius: 18px; background: #4b2948; color: var(--spotify); font-size: 28px; font-weight: 900; box-shadow: 0 8px 22px #7a245026; }
-      h1 { margin: 0; font-size: clamp(1.7rem, 3vw, 2.7rem); line-height: 1.04; letter-spacing: -.055em; }
-      .subtitle, .date { margin: 8px 0 0; color: var(--muted); font-size: .94rem; }
-      .date { padding: 11px 15px; border: 1px solid #efc7da; border-radius: 14px; background: #ffffffad; text-align: right; line-height: 1.45; white-space: nowrap; }
-      .canvas { display: grid; grid-template-columns: 1fr 1.05fr 1.14fr 1fr 1fr; grid-template-rows: minmax(245px, 1fr) minmax(245px, 1fr) minmax(215px, .86fr); gap: 12px; }
-      .block { position: relative; isolation: isolate; padding: 21px; overflow: visible; border: 1px solid var(--line); border-radius: 16px; background: var(--paper); box-shadow: 0 3px 12px #14291a08; transition: transform .18s ease, box-shadow .18s ease, border-color .18s ease; }
-      .block .details { position: absolute; top: 52px; left: -1px; right: -1px; z-index: 4; padding: 7px 20px 19px; border: 1px solid #f0c5da; border-top: 0; border-radius: 0 0 16px 16px; background: #fff; box-shadow: 0 16px 30px #7a245020; visibility: hidden; opacity: 0; transform: translateY(-5px); transition: opacity .18s ease, transform .18s ease, visibility .18s; }
-      .block:hover, .block:focus-within { z-index: 5; transform: translateY(-2px); border-color: #e9a6c4; box-shadow: 0 12px 28px #7a245018; }
-      .block:hover .details, .block:focus-within .details { visibility: visible; opacity: 1; transform: translateY(0); }
-      .block:hover .summary, .block:focus-within .summary { visibility: hidden; }
-      .block .summary li { margin-bottom: 8px; }
-      .block:focus-visible { outline: 3px solid var(--spotify-dark); outline-offset: 2px; }
-      .block h2 { display: flex; align-items: center; gap: 9px; margin: 0 0 16px; color: #5b2a72; font-size: .77rem; letter-spacing: .085em; text-transform: uppercase; }
-      .block h2::before { content: ""; width: 9px; height: 9px; flex: 0 0 auto; border-radius: 3px; background: #f08ab8; transform: rotate(45deg); }
-      ul { margin: 0; padding: 0; list-style: none; }
-      li { position: relative; margin: 0 0 10px; padding-left: 14px; color: #5f4a62; font-size: .87rem; line-height: 1.45; }
-      li::before { content: ""; position: absolute; top: .58em; left: 0; width: 5px; height: 5px; border-radius: 50%; background: #d88aae; }
-      li:last-child { margin-bottom: 0; }
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-      .partners { grid-column: 1; grid-row: 1 / span 2; }
-      .activities { grid-column: 2; grid-row: 1; }
-      .resources { grid-column: 2; grid-row: 2; }
-      .value { grid-column: 3; grid-row: 1 / span 2; border-color: #f0a8c9; background: linear-gradient(145deg, #ffd8e9, #ffffff 78%); }
-      .value h2 { color: var(--spotify-dark); }
-      .relationships { grid-column: 4; grid-row: 1; }
-      .channels { grid-column: 4; grid-row: 2; }
-      .segments { grid-column: 5; grid-row: 1 / span 2; }
-      .costs { grid-column: 1 / span 3; grid-row: 3; }
-      .revenue { grid-column: 4 / span 2; grid-row: 3; }
-      .split { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; }
-      .tag { display: inline-block; margin: 1px 4px 5px 0; padding: 5px 9px; border: 1px solid #f1bdd5; border-radius: 999px; background: var(--tint); color: #c02675; font-size: .73rem; font-weight: 650; }
-      .note { margin-top: 16px; color: var(--muted); font-size: .78rem; line-height: 1.4; }
+  <title>Netflix | Modelo Canvas</title>
 
-      @media (max-width: 960px) {
-        .canvas { grid-template-columns: repeat(2, 1fr); grid-template-rows: auto; }
-        .block { min-height: 220px; }
-        .partners, .activities, .resources, .value, .relationships, .channels, .segments, .costs, .revenue { grid-column: auto; grid-row: auto; }
-        .value, .segments { min-height: 300px; }
-        .costs, .revenue { min-height: 200px; }
-      }
-      @media (max-width: 600px) {
-        .page { padding: 25px 16px 36px; }
-        .hero { align-items: flex-start; flex-direction: column; gap: 14px; }
-        .date { text-align: left; }
-        .canvas { grid-template-columns: 1fr; gap: 10px; }
+  <style>
+    :root {
+      --red: #e50914;
+      --red2: #ff2633;
+      --black: #050505;
+      --dark: #0d0d0d;
+      --card: #151515;
+      --card2: #1c1c1c;
+      --white: #fff;
+      --gray: #a8a8a8;
+      --line: rgba(255,255,255,.11);
+    }
 
-        .block { min-height: 0; }
-        .split { grid-template-columns: 1fr; }
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      color: var(--white);
+      background:
+        radial-gradient(circle at 50% -10%, rgba(229,9,20,.28), transparent 35%),
+        radial-gradient(circle at 0% 40%, rgba(229,9,20,.08), transparent 30%),
+        #050505;
+      min-height: 100vh;
+    }
+
+    /* =========================
+       FONDO DECORATIVO
+    ========================= */
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      opacity: .035;
+
+      background-image:
+        linear-gradient(90deg, #fff 1px, transparent 1px),
+        linear-gradient(#fff 1px, transparent 1px);
+
+      background-size: 70px 70px;
+    }
+
+    .page {
+      width: min(1600px, 94%);
+      margin: auto;
+      padding: 35px 0 60px;
+    }
+
+    /* =========================
+       CABECERA
+    ========================= */
+
+    .hero {
+      position: relative;
+      min-height: 310px;
+
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+
+      padding: 45px;
+
+      overflow: hidden;
+
+      border-radius: 28px;
+
+      background:
+        linear-gradient(
+          90deg,
+          rgba(0,0,0,.98),
+          rgba(0,0,0,.7),
+          rgba(0,0,0,.25)
+        ),
+        radial-gradient(
+          circle at 80% 40%,
+          rgba(229,9,20,.55),
+          transparent 32%
+        ),
+        #111;
+
+      border: 1px solid rgba(255,255,255,.1);
+
+      box-shadow:
+        0 30px 80px rgba(0,0,0,.7);
+    }
+
+    .hero::after {
+      content: "";
+
+      position: absolute;
+
+      width: 600px;
+      height: 600px;
+
+      right: -220px;
+      top: -300px;
+
+      border-radius: 50%;
+
+      border: 70px solid rgba(229,9,20,.08);
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      max-width: 850px;
+    }
+
+    .small-title {
+      color: #ff5b63;
+      font-size: .75rem;
+      font-weight: bold;
+      letter-spacing: .3em;
+      text-transform: uppercase;
+      margin-bottom: 15px;
+    }
+
+    .hero h1 {
+      font-size: clamp(3rem, 7vw, 6.5rem);
+      line-height: .82;
+      letter-spacing: -.08em;
+      margin-bottom: 20px;
+    }
+
+    .hero h1 span {
+      color: var(--red);
+    }
+
+    .hero p {
+      color: #cfcfcf;
+      max-width: 650px;
+      line-height: 1.6;
+      font-size: 1rem;
+    }
+
+    .editor {
+      position: relative;
+      z-index: 2;
+
+      padding: 18px 22px;
+
+      min-width: 250px;
+
+      border-left: 3px solid var(--red);
+
+      background: rgba(0,0,0,.45);
+
+      backdrop-filter: blur(10px);
+
+      border-radius: 0 12px 12px 0;
+    }
+
+    .editor small {
+      display: block;
+      color: #888;
+      font-size: .65rem;
+      letter-spacing: .15em;
+      text-transform: uppercase;
+      margin-bottom: 6px;
+    }
+
+    .editor strong {
+      color: white;
+      font-size: .9rem;
+    }
+
+    /* =========================
+       INSTRUCCIÓN
+    ========================= */
+
+    .instruction {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+
+      margin: 25px 0;
+
+      color: #aaa;
+
+      font-size: .82rem;
+    }
+
+    .instruction .circle {
+      width: 30px;
+      height: 30px;
+
+      display: grid;
+      place-items: center;
+
+      border-radius: 50%;
+
+      background: var(--red);
+
+      color: white;
+
+      font-weight: bold;
+    }
+
+    /* =========================
+       CANVAS
+    ========================= */
+
+    .canvas {
+      display: grid;
+
+      grid-template-columns:
+        1fr
+        1fr
+        1.15fr
+        1fr
+        1fr;
+
+      grid-template-rows:
+        minmax(310px, auto)
+        minmax(310px, auto)
+        minmax(280px, auto);
+
+      gap: 12px;
+    }
+
+    /* =========================
+       TARJETAS
+    ========================= */
+
+    .card {
+      position: relative;
+
+      padding: 25px;
+
+      border: 1px solid var(--line);
+
+      border-radius: 20px;
+
+      background:
+        linear-gradient(
+          145deg,
+          rgba(255,255,255,.06),
+          rgba(255,255,255,.025)
+        );
+
+      overflow: hidden;
+
+      cursor: pointer;
+
+      transition:
+        transform .35s ease,
+        border .35s ease,
+        box-shadow .35s ease,
+        background .35s ease;
+    }
+
+    .card::before {
+      content: "";
+
+      position: absolute;
+
+      width: 150px;
+      height: 150px;
+
+      right: -80px;
+      bottom: -80px;
+
+      background: var(--red);
+
+      border-radius: 50%;
+
+      filter: blur(55px);
+
+      opacity: 0;
+
+      transition: .4s;
+    }
+
+    .card:hover {
+      transform: translateY(-5px);
+
+      border-color:
+        rgba(229,9,20,.4);
+
+      box-shadow:
+        0 18px 40px rgba(0,0,0,.4);
+    }
+
+    .card:hover::before {
+      opacity: .18;
+    }
+
+    /* =========================
+       TARJETA ABIERTA
+    ========================= */
+
+    .card.open {
+      z-index: 30;
+
+      transform: scale(1.025);
+
+      border-color: var(--red);
+
+      background:
+        linear-gradient(
+          145deg,
+          #261315,
+          #111
+        );
+
+      box-shadow:
+        0 25px 70px rgba(0,0,0,.85),
+        0 0 35px rgba(229,9,20,.16);
+    }
+
+    .card.open::after {
+      content: "";
+
+      position: absolute;
+
+      left: 10%;
+      right: 10%;
+      top: 0;
+
+      height: 3px;
+
+      background: var(--red);
+
+      box-shadow:
+        0 0 15px var(--red);
+    }
+
+    /* =========================
+       ICONOS
+    ========================= */
+
+    .number {
+      position: absolute;
+
+      top: 18px;
+      right: 20px;
+
+      color: rgba(255,255,255,.12);
+
+      font-size: 3rem;
+
+      font-weight: 900;
+
+      line-height: 1;
+    }
+
+    .card h2 {
+      position: relative;
+      z-index: 2;
+
+      display: flex;
+      align-items: center;
+      gap: 10px;
+
+      color: white;
+
+      font-size: .76rem;
+
+      letter-spacing: .13em;
+
+      text-transform: uppercase;
+
+      margin-bottom: 20px;
+    }
+
+    .card h2::before {
+      content: "";
+
+      width: 8px;
+      height: 22px;
+
+      background: var(--red);
+
+      border-radius: 2px;
+    }
+
+    .summary,
+    .details {
+      position: relative;
+      z-index: 2;
+    }
+
+    .summary {
+      list-style: none;
+    }
+
+    .summary li,
+    .details li {
+      position: relative;
+
+      padding-left: 16px;
+
+      color: #c8c8c8;
+
+      font-size: .86rem;
+
+      line-height: 1.55;
+
+      margin-bottom: 11px;
+    }
+
+    .summary li::before,
+    .details li::before {
+      content: "";
+
+      position: absolute;
+
+      left: 0;
+      top: .65em;
+
+      width: 5px;
+      height: 5px;
+
+      border-radius: 50%;
+
+      background: var(--red);
+    }
+
+    .details {
+      max-height: 0;
+
+      overflow: hidden;
+
+      opacity: 0;
+
+      transition:
+        max-height .55s ease,
+        opacity .3s ease,
+        margin .3s ease;
+
+      margin-top: 0;
+    }
+
+    .card.open .details {
+      max-height: 1400px;
+
+      opacity: 1;
+
+      margin-top: 18px;
+    }
+
+    .details ul {
+      list-style: none;
+    }
+
+    .details strong {
+      color: white;
+    }
+
+    /* =========================
+       BOTÓN VISUAL
+    ========================= */
+
+    .click {
+      display: inline-flex;
+
+      margin-top: 15px;
+
+      padding: 6px 10px;
+
+      border: 1px solid rgba(255,255,255,.08);
+
+      border-radius: 50px;
+
+      color: #777;
+
+      font-size: .62rem;
+
+      transition: .3s;
+    }
+
+    .card.open .click {
+      color: #ff6970;
+
+      border-color:
+        rgba(229,9,20,.3);
+
+      background:
+        rgba(229,9,20,.08);
+    }
+
+    .card.open .click::after {
+      content: " · Cerrar";
+    }
+
+    /* =========================
+       POSICIONES
+    ========================= */
+
+    .partners {
+      grid-column: 1;
+      grid-row: 1 / span 2;
+    }
+
+    .activities {
+      grid-column: 2;
+      grid-row: 1;
+    }
+
+    .resources {
+      grid-column: 2;
+      grid-row: 2;
+    }
+
+    .value {
+      grid-column: 3;
+      grid-row: 1 / span 2;
+    }
+
+    .relationships {
+      grid-column: 4;
+      grid-row: 1;
+    }
+
+    .channels {
+      grid-column: 4;
+      grid-row: 2;
+    }
+
+    .segments {
+      grid-column: 5;
+      grid-row: 1 / span 2;
+    }
+
+    .costs {
+      grid-column: 1 / span 3;
+      grid-row: 3;
+    }
+
+    .revenue {
+      grid-column: 4 / span 2;
+      grid-row: 3;
+    }
+
+    /* =========================
+       PROPUESTA CENTRAL
+    ========================= */
+
+    .value {
+      background:
+        radial-gradient(
+          circle at 50% 35%,
+          rgba(229,9,20,.24),
+          transparent 45%
+        ),
+        linear-gradient(
+          145deg,
+          #291012,
+          #111
+        );
+
+      border-color:
+        rgba(229,9,20,.55);
+    }
+
+    .value .netflix-screen {
+      display: grid;
+      place-items: center;
+
+      height: 145px;
+
+      margin: 22px 0;
+
+      border-radius: 15px;
+
+      background:
+        linear-gradient(
+          135deg,
+          #26080b,
+          #080808
+        );
+
+      border: 1px solid
+        rgba(229,9,20,.25);
+
+      box-shadow:
+        inset 0 0 40px rgba(229,9,20,.08);
+    }
+
+    .netflix-screen span {
+      font-size: 5rem;
+
+      font-weight: 900;
+
+      color: var(--red);
+
+      text-shadow:
+        0 0 30px rgba(229,9,20,.4);
+    }
+
+    .value .quote {
+      color: #ddd;
+
+      line-height: 1.6;
+
+      font-size: .86rem;
+
+      padding: 15px;
+
+      border-left: 2px solid var(--red);
+
+      background: rgba(255,255,255,.035);
+    }
+
+    .tags {
+      margin-top: 18px;
+    }
+
+    .tag {
+      display: inline-block;
+
+      padding: 6px 10px;
+
+      margin: 0 4px 6px 0;
+
+      border-radius: 50px;
+
+      color: #ff777d;
+
+      background:
+        rgba(229,9,20,.1);
+
+      border:
+        1px solid rgba(229,9,20,.3);
+
+      font-size: .65rem;
+
+      font-weight: bold;
+    }
+
+    /* =========================
+       PIE
+    ========================= */
+
+    footer {
+      margin-top: 30px;
+
+      padding: 25px;
+
+      display: flex;
+
+      justify-content: space-between;
+
+      gap: 20px;
+
+      border-top:
+        1px solid var(--line);
+
+      color: #777;
+
+      font-size: .72rem;
+    }
+
+    footer strong {
+      color: #ddd;
+    }
+
+    footer span {
+      color: var(--red);
+    }
+
+    /* =========================
+       TABLET
+    ========================= */
+
+    @media (max-width: 1150px) {
+
+      .canvas {
+        grid-template-columns: repeat(2, 1fr);
+        grid-template-rows: auto;
       }
-      @media print {
-        .block .details { position: static; visibility: visible; opacity: 1; transform: none; padding: 12px 0 0; border: 0; box-shadow: none; }
-        @page { margin: 10mm; size: landscape; }
-        body { background: #fff; }
-        .page { max-width: none; padding: 0; }
-        .hero { margin-bottom: 12px; }
-        .canvas { border-radius: 0; box-shadow: none; }
-        .block { padding: 12px; }
-        li { margin-bottom: 5px; font-size: .76rem; }
-        .note { display: none; }
+
+      .partners,
+      .activities,
+      .resources,
+      .value,
+      .relationships,
+      .channels,
+      .segments,
+      .costs,
+      .revenue {
+        grid-column: auto;
+        grid-row: auto;
       }
-    </style>
-  </head>
-  <body>
-    <main class="page">
-      <header class="hero">
-        <div class="brand">
-          <div class="mark" aria-hidden="true">≋</div>
-          <div>
-            <h1>Spotify · Modelo Canvas</h1>
-            <p class="subtitle">Aplicaci�n multiplataforma de música, podcasts y audiolibros</p>
-          </div>
+
+      .value {
+        min-height: 450px;
+      }
+    }
+
+    /* =========================
+       CELULAR
+    ========================= */
+
+    @media (max-width: 700px) {
+
+      .page {
+        width: 92%;
+        padding-top: 18px;
+      }
+
+      .hero {
+        min-height: 0;
+
+        padding: 28px 23px;
+
+        flex-direction: column;
+
+        align-items: flex-start;
+      }
+
+      .hero h1 {
+        font-size: 3.5rem;
+      }
+
+      .editor {
+        width: 100%;
+      }
+
+      .canvas {
+        grid-template-columns: 1fr;
+        gap: 10px;
+      }
+
+      .card {
+        padding: 21px;
+      }
+
+      .card.open {
+        transform: scale(1.01);
+      }
+
+      .value .netflix-screen {
+        height: 120px;
+      }
+
+      .netflix-screen span {
+        font-size: 4rem;
+      }
+
+      footer {
+        flex-direction: column;
+      }
+    }
+
+    /* =========================
+       IMPRESIÓN
+    ========================= */
+
+    @media print {
+
+      body {
+        background: white;
+        color: black;
+      }
+
+      .page {
+        width: 100%;
+      }
+
+      .hero {
+        background: #111;
+        box-shadow: none;
+      }
+
+      .canvas {
+        gap: 6px;
+      }
+
+      .card {
+        background: white;
+        color: black;
+        box-shadow: none;
+        border-color: #999;
+        transform: none !important;
+      }
+
+      .details {
+        max-height: none !important;
+        opacity: 1 !important;
+        margin-top: 15px !important;
+      }
+
+      .click,
+      .instruction {
+        display: none;
+      }
+
+      .card li {
+        color: #222;
+      }
+
+      @page {
+        size: landscape;
+        margin: 8mm;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <main class="page">
+
+    <!-- =========================
+         ENCABEZADO
+    ========================= -->
+
+    <header class="hero">
+
+      <div class="hero-content">
+
+        <div class="small-title">
+          Business Model Canvas
         </div>
-        <p class="date">Business Model Canvas<br />Septiembre de 2026</p>
-      </header>
 
-      <section class="canvas" aria-label="Business Model Canvas de Spotify">
-        <article class="block partners" tabindex="0">
-          <h2>Socios clave</h2><ul class="summary"><li>Sellos y distribuidoras aportan derechos y catálogo.</li><li>Creadores producen música, podcasts y otros formatos.</li><li>Anunciantes y socios tecnológicos conectan oferta, audiencia y servicio.</li></ul><div class="details">
-          <ul>
-            <li>Sellos discográficos, distribuidoras y artistas independientes.</li>
-            <li>Productoras, creadores y redes de podcasts.</li>
-            <li>Editoriales y titulares de derechos musicales.</li>
-            <li>Anunciantes, agencias y plataformas publicitarias.</li>
-            <li>Operadores móviles, fabricantes de dispositivos y tiendas de apps.</li>
-            <li>Proveedores de nube, pagos y analítica.</li>
-          </ul>
-        </div></article>
+        <h1>
+          NET<span>FLIX</span>
+        </h1>
 
-        <article class="block activities" tabindex="0">
-          <h2>Actividades clave</h2><ul class="summary"><li>Licenciar y organizar contenido de audio.</li><li>Desarrollar y operar una experiencia confiable en todos los dispositivos.</li><li>Personalizar el descubrimiento y monetizar con anuncios y suscripciones.</li></ul><div class="details">
-          <ul>
-            <li>Licenciar, ingerir y gestionar el catálogo de audio.</li>
-            <li>Desarrollar apps, plataforma y reproducción confiable.</li>
-            <li>Personalizar descubrimiento, playlists y recomendaciones.</li>
-            <li>Adquirir, retener y dar soporte a usuarios.</li>
-            <li>Comercializar publicidad y suscripciones.</li>
-            <li>Medir audiencias y pagar regalías.</li>
-          </ul>
-        </div></article>
+        <p>
+          Modelo de negocio de una de las plataformas de
+          entretenimiento digital más conocidas del mundo.
+          Explora cada sección haciendo clic sobre las tarjetas.
+        </p>
 
-        <article class="block resources" tabindex="0">
-          <h2>Recursos clave</h2><ul class="summary"><li>Cat�logo, licencias y metadatos.</li><li>Marca y comunidad global de oyentes.</li><li>Algoritmos, datos, infraestructura y equipos especializados.</li></ul><div class="details">
-          <ul>
-            <li>Marca global y base de usuarios.</li>
-            <li>Licencias, catálogo y metadatos de contenido.</li>
-            <li>Algoritmos, datos de escucha e infraestructura tecnol�gica.</li>
-            <li>Apps para móvil, web, escritorio, TV y automóvil.</li>
-            <li>Equipos de producto, datos, ventas y relaciones con creadores.</li>
-          </ul>
-        </div></article>
+      </div>
 
-        <article class="block value" tabindex="0">
-          <h2>Propuesta de valor</h2><ul class="summary"><li>Amplio catálogo de música y audio disponible en múltiples dispositivos.</li><li>Recomendaciones y playlists que ayudan a descubrir contenido.</li><li>Acceso gratuito con anuncios y opción Premium con beneficios adicionales.</li></ul><div class="details">
+      <div class="editor">
+
+        <small>
+          Trabajo realizado / editado por
+        </small>
+
+        <strong>
+          Jennifer Bautista Barrios
+        </strong>
+
+      </div>
+
+    </header>
+
+
+    <!-- =========================
+         INSTRUCCIÓN
+    ========================= -->
+
+    <div class="instruction">
+
+      <div class="circle">
+        +
+      </div>
+
+      <span>
+        Haz clic sobre cualquier bloque para descubrir
+        información adicional.
+      </span>
+
+    </div>
+
+
+    <!-- =========================
+         CANVAS
+    ========================= -->
+
+    <section class="canvas">
+
+
+      <!-- SOCIOS -->
+
+      <article class="card partners">
+
+        <div class="number">01</div>
+
+        <h2>
+          Socios clave
+        </h2>
+
+        <ul class="summary">
+
+          <li>
+            Estudios cinematográficos y productoras.
+          </li>
+
+          <li>
+            Creadores, actores y directores.
+          </li>
+
+          <li>
+            Empresas tecnológicas.
+          </li>
+
+          <li>
+            Fabricantes de dispositivos.
+          </li>
+
+          <li>
+            Empresas de telecomunicaciones.
+          </li>
+
+        </ul>
+
+        <div class="details">
+
           <ul>
-            <li>Acceso inmediato a un amplio catálogo de música y audio desde cualquier dispositivo.</li>
-            <li>Experiencia personal: recomendaciones, mixes, playlists y descubrimiento continuo.</li>
-            <li>Modelo freemium: escuchar sin pago con anuncios o eliminar anuncios con Premium.</li>
-            <li>Descargas y escucha sin conexión para usuarios Premium.</li>
-            <li>Una plataforma de alcance global para artistas, creadores y anunciantes.</li>
+
+            <li>
+              <strong>Productoras:</strong>
+              colaboran en películas, series y documentales.
+            </li>
+
+            <li>
+              <strong>Estudios:</strong>
+              proporcionan derechos de contenido audiovisual.
+            </li>
+
+            <li>
+              <strong>Creadores:</strong>
+              directores, actores, guionistas y equipos creativos.
+            </li>
+
+            <li>
+              <strong>Tecnología:</strong>
+              proveedores de infraestructura, almacenamiento,
+              seguridad y servicios digitales.
+            </li>
+
+            <li>
+              <strong>Dispositivos:</strong>
+              Smart TVs, teléfonos, tablets, consolas
+              y reproductores multimedia.
+            </li>
+
+            <li>
+              <strong>Telecomunicaciones:</strong>
+              compañías que ofrecen internet y paquetes
+              que pueden incluir el servicio.
+            </li>
+
+            <li>
+              <strong>Pagos:</strong>
+              bancos, tarjetas y plataformas digitales.
+            </li>
+
           </ul>
-          <div class="note">
-            <span class="tag">Personalizaci�n</span><span class="tag">Multiplataforma</span><span class="tag">Freemium</span><span class="tag">Descubrimiento</span>
+
+        </div>
+
+        <span class="click">
+          Ver más
+        </span>
+
+      </article>
+
+
+      <!-- ACTIVIDADES -->
+
+      <article class="card activities">
+
+        <div class="number">02</div>
+
+        <h2>
+          Actividades clave
+        </h2>
+
+        <ul class="summary">
+
+          <li>
+            Producción de contenido.
+          </li>
+
+          <li>
+            Adquisición de derechos.
+          </li>
+
+          <li>
+            Desarrollo de tecnología.
+          </li>
+
+          <li>
+            Marketing y promoción.
+          </li>
+
+        </ul>
+
+        <div class="details">
+
+          <ul>
+
+            <li>
+              Producción de películas, series y documentales.
+            </li>
+
+            <li>
+              Compra y administración de licencias.
+            </li>
+
+            <li>
+              Desarrollo y mantenimiento de la plataforma.
+            </li>
+
+            <li>
+              Creación de sistemas de recomendación.
+            </li>
+
+            <li>
+              Análisis de datos de consumo.
+            </li>
+
+            <li>
+              Promoción de nuevos lanzamientos.
+            </li>
+
+            <li>
+              Localización, subtítulos y doblaje.
+            </li>
+
+          </ul>
+
+        </div>
+
+        <span class="click">
+          Ver más
+        </span>
+
+      </article>
+
+
+      <!-- RECURSOS -->
+
+      <article class="card resources">
+
+        <div class="number">03</div>
+
+        <h2>
+          Recursos clave
+        </h2>
+
+        <ul class="summary">
+
+          <li>
+            Marca Netflix.
+          </li>
+
+          <li>
+            Catálogo audiovisual.
+          </li>
+
+          <li>
+            Tecnología.
+          </li>
+
+          <li>
+            Datos de usuarios.
+          </li>
+
+        </ul>
+
+        <div class="details">
+
+          <ul>
+
+            <li>
+              Marca y reconocimiento internacional.
+            </li>
+
+            <li>
+              Catálogo de películas y series.
+            </li>
+
+            <li>
+              Producciones originales.
+            </li>
+
+            <li>
+              Aplicaciones y plataforma digital.
+            </li>
+
+            <li>
+              Algoritmos de recomendación.
+            </li>
+
+            <li>
+              Datos y análisis de usuarios.
+            </li>
+
+            <li>
+              Equipos de tecnología, producción,
+              marketing y administración.
+            </li>
+
+          </ul>
+
+        </div>
+
+        <span class="click">
+          Ver más
+        </span>
+
+      </article>
+
+
+      <!-- PROPUESTA DE VALOR -->
+
+      <article class="card value">
+
+        <div class="number">04</div>
+
+        <h2>
+          Propuesta de valor
+        </h2>
+
+        <ul class="summary">
+
+          <li>
+            Entretenimiento bajo demanda.
+          </li>
+
+          <li>
+            Gran variedad de contenido.
+          </li>
+
+          <li>
+            Producciones originales.
+          </li>
+
+          <li>
+            Recomendaciones personalizadas.
+          </li>
+
+          <li>
+            Acceso desde múltiples dispositivos.
+          </li>
+
+        </ul>
+
+        <div class="details">
+
+          <div class="netflix-screen">
+            <span>N</span>
           </div>
-        </div></article>
 
-        <article class="block relationships" tabindex="0">
-          <h2>Relación con clientes</h2><ul class="summary"><li>Alta y gestión de cuenta en autoservicio.</li><li>Recomendaciones y comunicaciones adaptadas a cada oyente.</li><li>Ayuda digital y planes para compartir la suscripción.</li></ul><div class="details">
           <ul>
-            <li>Autoservicio digital y onboarding guiado.</li>
-            <li>Experiencia personalizada basada en hábitos de escucha.</li>
-            <li>Notificaciones, correos y campañas de retenci�n.</li>
-            <li>Soporte en línea, centro de ayuda y comunidad.</li>
-            <li>Planes compartidos: Duo, Familiar y Estudiantes.</li>
-          </ul>
-        </div></article>
 
-        <article class="block channels" tabindex="0">
-          <h2>Canales</h2><ul class="summary"><li>Apps móviles, escritorio y reproductor web.</li><li>Integración con televisores, consolas, altavoces y autos.</li><li>Tiendas de aplicaciones, socios comerciales y marketing digital.</li></ul><div class="details">
-          <ul>
-            <li>Aplicaciones iOS, Android, escritorio y web.</li>
-            <li>Smart TVs, consolas, altavoces, wearables y automóviles.</li>
-            <li>App Store, Google Play y sitio web propio.</li>
-            <li>Alianzas con telecomunicaciones, hardware y comercios.</li>
-            <li>Redes sociales, referidos y marketing digital.</li>
-          </ul>
-        </div></article>
+            <li>
+              <strong>Contenido bajo demanda:</strong>
+              el usuario decide qué quiere ver y cuándo.
+            </li>
 
-        <article class="block segments" tabindex="0">
-          <h2>Segmentos de clientes</h2><ul class="summary"><li>Oyentes Free con publicidad y suscriptores Premium.</li><li>Estudiantes y hogares con planes compartidos.</li><li>Creadores, titulares de derechos y anunciantes.</li></ul><div class="details">
-          <ul>
-            <li>Oyentes gratuitos que aceptan publicidad.</li>
-            <li>Suscriptores Premium individuales y de planes grupales.</li>
-            <li>Estudiantes y usuarios sensibles al precio.</li>
-            <li>Amantes de podcasts y audiolibros.</li>
-            <li>Artistas, sellos y creadores que buscan distribución y audiencia.</li>
-            <li>Anunciantes que buscan audiencias segmentadas.</li>
-          </ul>
-        </div></article>
+            <li>
+              <strong>Variedad:</strong>
+              películas, series, documentales y
+              diferentes géneros.
+            </li>
 
-        <article class="block costs" tabindex="0">
-          <h2>Estructura de costos</h2><ul class="summary"><li>El mayor componente: licencias y regalías de contenido.</li><li>Tecnolog�a para producto, nube, datos y distribución.</li><li>Marketing, personal, soporte y acuerdos comerciales.</li></ul><div class="details">
-          <div class="split">
-            <ul>
-              <li>Regal�as y pagos por licencias de música y contenido.</li>
-              <li>Costos de adquisición o producción de podcasts y audiolibros.</li>
-              <li>Infraestructura cloud, CDN, almacenamiento y transmisión.</li>
-            </ul>
-            <ul>
-              <li>Desarrollo de producto, seguridad, datos e IA.</li>
-              <li>Marketing, ventas, alianzas y comisiones de plataformas.</li>
-              <li>Personal, operaciones, soporte y cumplimiento normativo.</li>
-            </ul>
+            <li>
+              <strong>Contenido original:</strong>
+              producciones desarrolladas para la plataforma.
+            </li>
+
+            <li>
+              <strong>Personalización:</strong>
+              recomendaciones basadas en los hábitos
+              de visualización.
+            </li>
+
+            <li>
+              <strong>Multiplataforma:</strong>
+              posibilidad de utilizar el servicio en
+              diferentes dispositivos compatibles.
+            </li>
+
+            <li>
+              <strong>Experiencia digital:</strong>
+              interfaz diseñada para descubrir,
+              guardar y reproducir contenido.
+            </li>
+
+          </ul>
+
+          <div class="quote">
+
+            Netflix combina entretenimiento,
+            tecnología, contenido y personalización
+            para ofrecer una experiencia digital
+            de consumo audiovisual.
+
           </div>
-        </div></article>
 
-        <article class="block revenue" tabindex="0">
-          <h2>Fuentes de ingresos</h2><ul class="summary"><li>Suscripciones Premium individuales y grupales.</li><li>Publicidad en audio, video y formatos digitales para Free.</li><li>Paquetes con socios y otros formatos según disponibilidad.</li></ul><div class="details">
-          <div class="split">
-            <ul>
-              <li>Suscripciones Premium mensuales: Individual, Duo, Familiar y Estudiantes.</li>
-              <li>Planes y paquetes distribuidos mediante socios de telecomunicaciones.</li>
-            </ul>
-            <ul>
-              <li>Publicidad de audio, video, display y patrocinios para usuarios Free.</li>
-              <li>Ingresos por audiolibros, cuando están disponibles en el mercado.</li>
-            </ul>
+          <div class="tags">
+
+            <span class="tag">Streaming</span>
+            <span class="tag">Originales</span>
+            <span class="tag">Personalización</span>
+            <span class="tag">Entretenimiento</span>
+            <span class="tag">Multiplataforma</span>
+
           </div>
-        </div></article>
-      </section>
-    </main>
-  </body>
+
+        </div>
+
+        <span class="click">
+          Ver más
+        </span>
+
+      </article>
+
+
+      <!-- RELACIÓN -->
+
+      <article class="card relationships">
+
+        <div class="number">05</div>
+
+        <h2>
+          Relación con clientes
+        </h2>
+
+        <ul class="summary">
+
+          <li>
+            Perfiles personalizados.
+          </li>
+
+          <li>
+            Recomendaciones.
+          </li>
+
+          <li>
+            Soporte digital.
+          </li>
+
+          <li>
+            Comunicación personalizada.
+          </li>
+
+        </ul>
+
+        <div class="details">
+
+          <ul>
+
+            <li>
+              Creación de perfiles individuales.
+            </li>
+
+            <li>
+              Recomendaciones según preferencias.
+            </li>
+
+            <li>
+              Listas para guardar contenido.
+            </li>
+
+            <li>
+              Controles parentales.
+            </li>
+
+            <li>
+              Notificaciones de nuevos contenidos.
+            </li>
+
+            <li>
+              Centro de ayuda.
+            </li>
+
+            <li>
+              Soporte para problemas técnicos y de cuenta.
+            </li>
+
+          </ul>
+
+        </div>
+
+        <span class="click">
+          Ver más
+        </span>
+
+      </article>
+
+
+      <!-- CANALES -->
+
+      <article class="card channels">
+
+        <div class="number">06</div>
+
+        <h2>
+          Canales
+        </h2>
+
+        <ul class="summary">
+
+          <li>
+            Aplicación móvil.
+          </li>
+
+          <li>
+            Sitio web.
+          </li>
+
+          <li>
+            Smart TV.
+          </li>
+
+          <li>
+            Consolas.
+          </li>
+
+        </ul>
+
+        <div class="details">
+
+          <ul>
+
+            <li>
+              Aplicaciones para teléfonos y tablets.
+            </li>
+
+            <li>
+              Sitio web para computadoras.
+            </li>
+
+            <li>
+              Smart TVs.
+            </li>
+
+            <li>
+              Consolas de videojuegos.
+            </li>
+
+            <li>
+              Dispositivos multimedia.
+            </li>
+
+            <li>
+              Operadores de telecomunicaciones.
+            </li>
+
+            <li>
+              Redes sociales y publicidad digital.
+            </li>
+
+          </ul>
+
+        </div>
+
+        <span class="click">
+          Ver más
+        </span>
+
+      </article>
+
+
+      <!-- SEGMENTOS -->
+
+      <article class="card segments">
+
+        <div class="number">07</div>
+
+        <h2>
+          Segmentos de clientes
+        </h2>
+
+        <ul class="summary">
+
+          <li>
+            Familias.
+          </li>
+
+          <li>
+            Jóvenes y adultos.
+          </li>
+
+          <li>
+            Niños.
+          </li>
+
+          <li>
+            Cinéfilos.
+          </li>
+
+          <li>
+            Consumidores digitales.
+          </li>
+
+        </ul>
+
+        <div class="details">
+
+          <ul>
+
+            <li>
+              <strong>Familias:</strong>
+              hogares que utilizan diferentes perfiles.
+            </li>
+
+            <li>
+              <strong>Jóvenes:</strong>
+              consumidores frecuentes de contenido digital.
+            </li>
+
+            <li>
+              <strong>Adultos:</strong>
+              interesados en películas, series y documentales.
+            </li>
+
+            <li>
+              <strong>Niños:</strong>
+              usuarios de contenido infantil.
+            </li>
+
+            <li>
+              <strong>Cinéfilos:</strong>
+              personas interesadas especialmente
+              en películas.
+            </li>
+
+            <li>
+              <strong>Fans de series:</strong>
+              usuarios que siguen temporadas y
+              producciones originales.
+            </li>
+
+            <li>
+              <strong>Usuarios internacionales:</strong>
+              personas interesadas en producciones
+              de diferentes países.
+            </li>
+
+          </ul>
+
+        </div>
+
+        <span class="click">
+          Ver más
+        </span>
+
+      </article>
+
+
+      <!-- COSTOS -->
+
+      <article class="card costs">
+
+        <div class="number">08</div>
+
+        <h2>
+          Estructura de costos
+        </h2>
+
+        <ul class="summary">
+
+          <li>
+            Producción y adquisición de contenido.
+          </li>
+
+          <li>
+            Tecnología e infraestructura.
+          </li>
+
+          <li>
+            Marketing.
+          </li>
+
+          <li>
+            Personal y operaciones.
+          </li>
+
+        </ul>
+
+        <div class="details">
+
+          <ul>
+
+            <li>
+              Producción de películas, series y documentales.
+            </li>
+
+            <li>
+              Adquisición de derechos y licencias.
+            </li>
+
+            <li>
+              Desarrollo de software y aplicaciones.
+            </li>
+
+            <li>
+              Infraestructura tecnológica y distribución digital.
+            </li>
+
+            <li>
+              Marketing y campañas promocionales.
+            </li>
+
+            <li>
+              Personal creativo, técnico y administrativo.
+            </li>
+
+            <li>
+              Seguridad, soporte y operaciones.
+            </li>
+
+            <li>
+              Doblaje, subtítulos y localización.
+            </li>
+
+          </ul>
+
+        </div>
+
+        <span class="click">
+          Ver más
+        </span>
+
+      </article>
+
+
+      <!-- INGRESOS -->
+
+      <article class="card revenue">
+
+        <div class="number">09</div>
+
+        <h2>
+          Fuentes de ingresos
+        </h2>
+
+        <ul class="summary">
+
+          <li>
+            Suscripciones.
+          </li>
+
+          <li>
+            Diferentes planes.
+          </li>
+
+          <li>
+            Modalidades con publicidad.
+          </li>
+
+        </ul>
+
+        <div class="details">
+
+          <ul>
+
+            <li>
+              <strong>Suscripciones:</strong>
+              pagos periódicos realizados por los usuarios.
+            </li>
+
+            <li>
+              Diferentes modalidades de planes
+              disponibles según el mercado.
+            </li>
+
+            <li>
+              <strong>Publicidad:</strong>
+              determinados planes pueden incorporar
+              anuncios como parte de su modelo comercial.
+            </li>
+
+            <li>
+              El modelo permite generar ingresos
+              recurrentes a partir de la base de suscriptores.
+            </li>
+
+          </ul>
+
+        </div>
+
+        <span class="click">
+          Ver más
+        </span>
+
+      </article>
+
+    </section>
+
+
+    <!-- =========================
+         PIE DE PÁGINA
+    ========================= -->
+
+    <footer>
+
+      <div>
+        <strong>NET<span>FLIX</span></strong>
+        · Modelo Canvas
+      </div>
+
+      <div>
+        Editado por
+        <strong>Jennifer Bautista Barrios</strong>
+      </div>
+
+      <div>
+        Business Model Canvas · 2026
+      </div>
+
+    </footer>
+
+  </main>
+
+
+  <script>
+
+    const cards = document.querySelectorAll(".card");
+
+    cards.forEach(card => {
+
+      card.addEventListener("click", function(e) {
+
+        e.stopPropagation();
+
+        cards.forEach(other => {
+
+          if (other !== card) {
+            other.classList.remove("open");
+          }
+
+        });
+
+        card.classList.toggle("open");
+
+      });
+
+    });
+
+
+    /* Cerrar tarjetas haciendo clic fuera */
+
+    document.addEventListener("click", function() {
+
+      cards.forEach(card => {
+        card.classList.remove("open");
+      });
+
+    });
+
+  </script>
+
+</body>
 </html>
