@@ -1,0 +1,14 @@
+{"schema_version":1,"diagram_type":"sequence","meta":{"title":"Netflix mobile screen sequence sketches","viewBox":[1200,900],"column_fit":"spread","quality_profile":"showcase"},"participants":[{"id":"viewer","type":"external","label":"Espectador"},{"id":"app","type":"frontend","label":"Netflix app"},{"id":"creator","type":"external","label":"Creador"}],"messages":[
+{"id":"viewer-login","from":"viewer","to":"app","y":150,"label":"1 · Inicia sesión","variant":"default"},
+{"id":"viewer-profiles","from":"viewer","to":"app","y":195,"label":"2 · Elige perfil","variant":"default"},
+{"id":"viewer-home","from":"viewer","to":"app","y":240,"label":"3 · Abre inicio","variant":"default"},
+{"id":"viewer-search","from":"viewer","to":"app","y":285,"label":"4 · Busca un título","variant":"default"},
+{"id":"viewer-detail","from":"viewer","to":"app","y":330,"label":"5 · Abre el detalle del título","variant":"default"},
+{"id":"viewer-player","from":"viewer","to":"app","y":375,"label":"6 · Toca Reproducir","variant":"emphasis"},
+{"id":"viewer-list","from":"viewer","to":"app","y":420,"label":"7 · Guarda y abre Mi lista","variant":"default"},
+{"id":"creator-login","from":"creator","to":"app","y":510,"label":"1 · Inicia sesión en el portal de socios (supuesto)","variant":"default"},
+{"id":"creator-home","from":"creator","to":"app","y":560,"label":"2 · Abre panel principal","variant":"default"},
+{"id":"creator-audience","from":"creator","to":"app","y":610,"label":"3 · Consulta audiencia de títulos","variant":"default"},
+{"id":"creator-catalog","from":"creator","to":"app","y":660,"label":"4 · Consulta catálogo y lanzamientos","variant":"default"},
+{"id":"creator-profile","from":"creator","to":"app","y":710,"label":"5 · Revisa perfil del creador","variant":"default"},
+{"id":"plays-to-stats","from":"app","to":"creator","y":790,"label":"Las reproducciones agregadas se reflejan en las métricas de audiencia","variant":"emphasis","note":"Relación conceptual solicitada (supuesto); Netflix publica listados Top 10 y reportes de visualización."}]}
