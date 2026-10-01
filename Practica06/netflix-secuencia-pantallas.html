@@ -1,258 +1,85 @@
-<!doctype html>
-<html lang="es">
-<head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="description" content="Diagrama académico de secuencia de pantallas con bocetos propios de baja fidelidad para espectador y creador.">
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 48 48'%3E%3Crect width='48' height='48' rx='11' fill='%23E50914'/%3E%3Cpath d='M19 14l16 10-16 10z' fill='%23fff'/%3E%3Ccircle cx='10' cy='15' r='2' fill='%23fff'/%3E%3Ccircle cx='10' cy='24' r='2' fill='%23fff'/%3E%3Ccircle cx='10' cy='33' r='2' fill='%23fff'/%3E%3C/svg%3E">
-<title>Secuencia de pantallas · ejercicio académico</title>
-<style>
-:root{color-scheme:dark;--bg:#141414;--paper:#0B0B0B;--ink:#FFFFFF;--muted:#B3B3B3;--line:#5A5A5A;--fill:#404040;--fill2:#221F1F;--accent:#E50914;--accent-ink:#FFFFFF;--accent-text:#FF4B55;--frame:#0B0B0B;--phone:#0B0B0B;--shadow:0 8px 26px #0008}
-body.light{color-scheme:light;--bg:#F5F5F1;--paper:#FFFFFF;--ink:#141414;--muted:#595959;--line:#B3B3B3;--fill:#DDDDD8;--fill2:#F1F1EE;--accent:#E50914;--accent-ink:#FFFFFF;--accent-text:#B20710;--frame:#141414;--phone:#FFFFFF;--shadow:0 8px 26px #00000012}
-*{box-sizing:border-box}
-body{margin:0;background:var(--bg);color:var(--ink);font:14px/1.4 system-ui,-apple-system,"Segoe UI",sans-serif}
-button{font:inherit;color:inherit;cursor:pointer;user-select:none}
-button:focus-visible,[tabindex]:focus-visible{outline:3px solid var(--accent-text);outline-offset:3px}
-.top{max-width:1700px;margin:auto;padding:27px clamp(16px,3vw,46px) 14px}
-.head{display:flex;justify-content:space-between;align-items:flex-start;gap:24px}
-.eyebrow{text-transform:uppercase;letter-spacing:.12em;font-size:.7rem;color:var(--muted);font-weight:750}
-.head h1{font-size:clamp(1.6rem,3vw,2.35rem);line-height:1.12;margin:7px 0}
-.head h1.titleline{display:flex;align-items:center;gap:12px}
-.brandmark{width:42px;height:42px;flex:0 0 42px}
-.head p{max-width:850px;color:var(--muted);margin:8px 0}
-.tools,.roles{display:flex;flex-wrap:wrap;gap:8px}
-.tools{justify-content:flex-end}
-.tool,.rolebtn{border:1px solid var(--line);border-radius:9px;background:var(--paper);padding:9px 13px}
-.rolebtn svg{vertical-align:-3px}
-.rolebtn[aria-pressed="true"]{background:var(--accent);color:var(--accent-ink);border-color:var(--accent);box-shadow:0 0 0 2px #E5091444;font-weight:700}
-.roles{margin-top:13px}
-.academic{font-size:.8rem;color:var(--muted);border-left:3px solid var(--accent);padding:7px 10px;margin:13px 0 0}
-.guide{font-size:.8rem;color:var(--muted);margin:10px 0 4px}
-.canvas{overflow-x:auto;padding:8px 22px 24px;scrollbar-color:var(--line) transparent}
-.lanes{max-width:1700px;min-width:1640px;margin:auto;display:grid;gap:15px}
-.lane{background:var(--paper);border:1px solid var(--line);border-radius:15px;padding:16px 18px 17px;box-shadow:var(--shadow);transition:opacity .18s ease}
-.lane.dim{filter:grayscale(1)}
-.lane.dim .arrow{color:var(--muted)}
-.lane.dim .arrow:after{border-color:var(--line)}
-.lanehead{display:flex;align-items:center;gap:10px;margin:0 0 13px}
-.lanehead h2{font-size:1rem;margin:0;scroll-margin-top:24px}
-.lanehead .hint{margin-left:auto;color:var(--muted);font-size:.76rem}
-.icon{width:25px;height:25px;display:grid;place-items:center}
-.icon svg{width:23px;height:23px;stroke:currentColor;fill:none;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
-.flow{display:flex;align-items:flex-start;gap:11px}
-.screen-wrap{width:183px;flex:0 0 183px;position:relative}
-.phone{width:100%;height:337px;border:2px solid var(--frame);border-radius:22px;background:var(--phone);padding:8px;position:relative;display:block;text-align:left;box-shadow:0 4px 0 var(--line);transition:transform .15s ease,box-shadow .15s ease}
-.phone:hover{transform:translateY(-3px);box-shadow:0 7px 0 var(--line)}
+<!doctype html><html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="description" content="Diagrama académico de secuencia de pantallas de Netflix con 2 roles y 16 pantallas."><link rel="icon" href="netflix-icon.svg" type="image/svg+xml"><title>Netflix · secuencia de pantallas (ejercicio académico)</title><style>:root{color-scheme:dark;--bg:#0A0A0A;--paper:#141414;--ink:#fff;--muted:#B3B3B3;--line:#3d3d3d;--fill:#2b2b2b;--fill2:#1c1c1c;--accent:#E50914;--accent-ink:#fff;--accent-text:#FF4B55;--frame:#050505;--phone:#0d0d0d;--shadow:0 14px 40px #000a;--glow:#E5091433}
+body.light{color-scheme:light;--bg:#F3F3EF;--paper:#fff;--ink:#141414;--muted:#595959;--line:#C9C9C4;--fill:#E3E3DE;--fill2:#F6F6F3;--accent-text:#B20710;--frame:#141414;--phone:#fff;--shadow:0 14px 40px #00000018;--glow:#E5091422}
+*{box-sizing:border-box}body{margin:0;background:radial-gradient(900px 420px at 15% -80px,var(--glow),transparent),var(--bg);color:var(--ink);font:14px/1.4 system-ui,-apple-system,"Segoe UI",sans-serif}
+button{font:inherit;color:inherit;cursor:pointer;user-select:none}button:focus-visible,[tabindex]:focus-visible{outline:3px solid var(--accent-text);outline-offset:3px}
+.top{max-width:1700px;margin:auto;padding:30px clamp(16px,3vw,46px) 14px}.head{display:flex;justify-content:space-between;gap:24px;align-items:flex-start}
+.eyebrow{text-transform:uppercase;letter-spacing:.14em;font-size:.7rem;color:var(--muted);font-weight:750}.titleline{margin:14px 0 8px}.wordmark{height:42px;width:auto;display:block;filter:drop-shadow(0 4px 14px var(--glow))}
+.sub{max-width:760px;color:var(--muted);margin:0 0 12px;font-size:1rem}.sub b{color:var(--ink)}.chips{display:flex;flex-wrap:wrap;gap:8px}.chips span{font-size:.74rem;font-weight:700;padding:5px 11px;border-radius:99px;background:var(--paper);border:1px solid var(--line)}
+.tools,.roles{display:flex;flex-wrap:wrap;gap:8px}.tool,.rolebtn{border:1px solid var(--line);border-radius:10px;background:var(--paper);padding:9px 14px;transition:.15s}.tool:hover,.rolebtn:hover{border-color:var(--accent)}
+.rolebtn svg{width:16px;height:16px;vertical-align:-3px;fill:none;stroke:currentColor;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
+.rolebtn[aria-pressed=true]{background:var(--accent);color:var(--accent-ink);border-color:var(--accent);box-shadow:0 6px 20px #E5091466;font-weight:700}
+.roles{margin-top:14px}.academic{font-size:.78rem;color:var(--muted);border-left:3px solid var(--accent);padding:6px 10px;margin:16px 0 0;max-width:900px}.guide{font-size:.8rem;color:var(--muted);margin:10px 0 4px}
+.canvas{overflow-x:auto;padding:8px 22px 20px}.lanes{max-width:1700px;min-width:1640px;margin:auto;display:grid;gap:12px}
+.lane{background:linear-gradient(180deg,var(--paper),var(--bg));border:1px solid var(--line);border-radius:18px;padding:16px 18px 17px;box-shadow:var(--shadow);position:relative;overflow:hidden}
+.lane:before{content:"";position:absolute;left:0;top:0;bottom:0;width:4px;background:var(--accent)}.lane.shared:before{background:var(--muted)}
+.lane.dim{filter:grayscale(1) opacity(.45)}.lanehead{display:flex;align-items:center;gap:10px;margin:0 0 14px}.lanehead h2{font-size:1.05rem;margin:0;scroll-margin-top:24px}.hint{margin-left:auto;color:var(--muted);font-size:.76rem}
+.badge{width:30px;height:30px;border-radius:9px;background:var(--accent);color:#fff;display:grid;place-items:center}.shared .badge{background:var(--fill);color:var(--ink)}.badge svg{width:18px;height:18px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+.flow{display:flex;align-items:flex-start;gap:11px}.screen-wrap{width:183px;flex:0 0 183px;position:relative}
+.phone{width:100%;height:337px;border:2px solid var(--frame);outline:1px solid var(--line);border-radius:24px;background:var(--phone);padding:8px;position:relative;display:block;text-align:left;box-shadow:0 8px 20px #0006;transition:transform .15s,box-shadow .15s}.phone:hover{transform:translateY(-4px);box-shadow:0 14px 28px #0008,0 0 0 2px var(--accent)}
 .notch{position:absolute;top:0;left:calc(50% - 29px);height:10px;width:58px;background:var(--frame);border-radius:0 0 8px 8px;z-index:2}
-.screen{height:100%;min-width:0;overflow:hidden;border-radius:14px;background:var(--fill2);padding:21px 9px 9px;display:flex;flex-direction:column;gap:7px}
-.screen>*{flex-shrink:0}
-.status{height:7px;width:39%;background:var(--fill);border-radius:5px;align-self:flex-end}
-.appbar{font-size:.77rem;font-weight:760;line-height:1.2;border-bottom:1px solid var(--line);padding:2px 0 7px;overflow-wrap:anywhere}
-.tiny{font-size:.59rem;color:var(--muted);line-height:1.25;overflow-wrap:anywhere}
-.label{font-size:.65rem;font-weight:700;line-height:1.24;overflow-wrap:anywhere}
-.field{height:24px;min-height:24px;border:1px solid var(--line);border-radius:5px;background:var(--paper);padding:5px;font-size:.58rem;color:var(--muted);overflow:hidden;white-space:nowrap;text-overflow:ellipsis}
-.block{min-height:29px;background:var(--fill);border-radius:5px;padding:6px;font-size:.59rem;line-height:1.2;overflow:hidden;overflow-wrap:anywhere}
-.tile{background:var(--fill);border-radius:5px;min-height:33px;padding:8px;font-size:.59rem;font-weight:650;line-height:1.1;overflow-wrap:anywhere}
-.row{display:flex;align-items:center;gap:6px;min-height:25px;border-bottom:1px solid var(--line);padding:3px 1px;font-size:.58rem;line-height:1.15}
-.cover{width:37px;height:37px;flex:0 0 37px;background:var(--fill);border:1px solid var(--line);border-radius:4px}
-.cover.square{height:48px;width:48px;flex-basis:48px}
-.cover.circle{border-radius:50%;width:38px;height:38px;flex-basis:38px}
-.hero{height:56px;width:100%;background:var(--fill);border:1px solid var(--line);border-radius:5px;display:grid;place-items:center;font-size:.6rem;font-weight:700;color:var(--muted)}
-.thumbs{display:flex;gap:5px}
-.thumbs i{display:block;flex:1;height:34px;background:var(--fill);border:1px solid var(--line);border-radius:4px}
-.grid2{display:grid;grid-template-columns:1fr 1fr;gap:7px}
-.pf{text-align:center;font-size:.58rem;line-height:1.2;color:var(--muted)}
-.pf .cover{display:block;margin:0 auto 3px}
-.poster{height:62px;background:var(--fill);border:1px solid var(--line);border-radius:4px;display:flex;align-items:flex-end;padding:3px;font-size:.52rem;color:var(--muted);line-height:1.1}
-.buttonmock{min-height:24px;border:1px solid var(--line);border-radius:6px;background:var(--fill);padding:5px;text-align:center;font-size:.59rem;font-weight:700;line-height:1.15;overflow-wrap:anywhere}
-.buttonmock.primary{background:var(--accent);border-color:var(--accent);color:var(--accent-ink)}
-.spacer{flex:1 1 0!important;min-height:0}
-.step{position:absolute;z-index:3;left:6px;top:-10px;width:23px;height:23px;border-radius:50%;background:var(--line);color:var(--ink);display:grid;place-items:center;font-size:.66rem;font-weight:800}
-.caption{text-align:center;font-size:.69rem;color:var(--muted);line-height:1.2;min-height:2.4em;margin:8px 0 0}
-.arrow{width:23px;flex:0 0 23px;margin-top:150px;text-align:center;color:var(--accent-text);font-size:.58rem;position:relative}
-.arrow:after{content:"";position:absolute;left:0;right:0;top:21px;border-top:1px solid var(--accent)}
-.arrow:before{content:"›";position:absolute;right:-1px;top:9px;font-size:1.25rem;line-height:1;background:var(--paper);color:var(--accent-text);z-index:1}
-.wave{height:34px;display:flex;align-items:center;justify-content:center;gap:3px;border:1px solid var(--line);background:var(--paper);border-radius:7px}
-.wave i{display:block;width:3px;background:var(--line);border-radius:3px}
-.metric{padding:7px;background:var(--paper);border:1px solid var(--line);border-radius:5px}
-.metric b{display:block;font-size:.78rem}
-.metric span{font-size:.54rem;color:var(--muted)}
-.cross{display:flex;align-items:center;justify-content:center;gap:10px;text-align:center;color:var(--muted);font-size:.78rem;padding:0 14px}
-.cross:before,.cross:after{content:"";height:1px;background:var(--line);flex:1}
-.cross svg{width:19px;height:19px;stroke:var(--accent);fill:none;stroke-width:1.7;flex:0 0 auto}
-.alternates{max-width:1700px;margin:6px auto 24px;padding:0 22px}
-.alternates h2{font-size:.95rem;margin:0 0 9px}
-.altrow{display:flex;gap:11px;overflow-x:auto;padding:3px 1px 11px}
-.alt{width:200px;flex:0 0 200px;min-height:112px;background:var(--paper);border:1px dashed var(--line);border-radius:11px;text-align:left;padding:12px}
-.alt b{display:block;font-size:.78rem;margin:8px 0 4px}
-.alt small{display:block;color:var(--muted);font-size:.68rem;line-height:1.25}
-.tag{font-size:.61rem;color:var(--muted);border:1px solid var(--line);border-radius:9px;padding:2px 6px}
-.foot{max-width:1700px;padding:0 22px 25px;margin:auto;color:var(--muted);font-size:.72rem}
-.overlay{position:fixed;inset:0;background:#0007;display:none;align-items:flex-end;justify-content:flex-end;z-index:9}
-.overlay.open{display:flex}
-.panel{height:min(100%,700px);width:min(430px,100%);overflow:auto;padding:24px;background:var(--paper);color:var(--ink);border-radius:17px 0 0 17px;box-shadow:var(--shadow)}
-.paneltop{display:flex;justify-content:space-between;gap:12px;align-items:flex-start}
-.panel h2{font-size:1.3rem;margin:6px 0 13px}
-.panel h3{font-size:.84rem;margin:17px 0 4px}
-.panel p{font-size:.86rem;color:var(--muted)}
-.close{border:1px solid var(--line);border-radius:8px;background:var(--paper);padding:6px 10px}
-.sr{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
-.lane.arrived{animation:role-arrival 1s ease-out}
-@keyframes role-arrival{0%{outline:3px solid var(--accent);outline-offset:1px;box-shadow:0 0 0 7px #E5091433,var(--shadow)}100%{outline:1px solid transparent;outline-offset:5px;box-shadow:var(--shadow)}}
-@media(max-width:700px){.head{display:block}.tools{justify-content:flex-start;margin-top:13px}.canvas{padding-left:12px;padding-right:12px}.alternates{padding:0 13px}.panel{height:min(82%,700px);width:100%;border-radius:17px 17px 0 0}}
+.screen{height:100%;min-width:0;overflow:hidden;border-radius:16px;background:linear-gradient(165deg,var(--fill2),var(--phone));padding:21px 9px 9px;display:flex;flex-direction:column;gap:7px}.screen>*{flex-shrink:0}
+.status{height:6px;width:39%;background:var(--fill);border-radius:5px;align-self:flex-end}.appbar{font-size:.77rem;font-weight:760;line-height:1.2;border-bottom:2px solid var(--accent);padding:2px 0 6px;overflow-wrap:anywhere}
+.tiny{font-size:.59rem;color:var(--muted);line-height:1.25;overflow-wrap:anywhere}.tiny.c{text-align:center}.label{font-size:.65rem;font-weight:700;line-height:1.24;overflow-wrap:anywhere}
+.field{height:24px;border:1px solid var(--line);border-radius:6px;background:var(--paper);padding:5px 7px;font-size:.58rem;color:var(--muted);overflow:hidden;white-space:nowrap}
+.block{min-height:29px;background:var(--fill);border-radius:6px;padding:6px;font-size:.6rem;line-height:1.25;overflow:hidden}
+.row{display:flex;align-items:center;gap:6px;min-height:26px;border-bottom:1px solid var(--line);padding:3px 1px;font-size:.58rem;line-height:1.15}
+.cover{width:34px;height:34px;flex:0 0 34px;background:linear-gradient(135deg,var(--fill),var(--line));border-radius:5px}.cover.square{width:46px;height:46px;flex-basis:46px}
+.hero{width:100%;background:linear-gradient(135deg,#E5091455,var(--fill) 60%);border:1px solid var(--line);border-radius:8px;display:grid;place-items:center;font-size:.62rem;font-weight:700;color:var(--muted)}
+.nlogo{height:46px;width:26px}.thumbs{display:flex;gap:5px}.thumbs i{flex:1;height:34px;background:linear-gradient(135deg,var(--fill),var(--line));border-radius:5px}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:7px}.pf{text-align:center;font-size:.58rem;color:var(--muted)}.pf .cover{display:block;margin:0 auto 3px}
+.poster{height:62px;background:linear-gradient(160deg,var(--fill),var(--line));border-radius:5px;display:flex;align-items:flex-end;padding:3px;font-size:.52rem;color:var(--ink)}
+.buttonmock{min-height:24px;border:1px solid var(--line);border-radius:6px;background:var(--fill);padding:5px;text-align:center;font-size:.59rem;font-weight:700}.buttonmock.primary{background:var(--accent);border-color:var(--accent);color:var(--accent-ink)}
+.metric{padding:7px;background:var(--paper);border:1px solid var(--line);border-radius:6px}.bar{height:4px;border-radius:3px;background:var(--line)}.bar i{display:block;width:22%;height:100%;background:var(--accent);border-radius:3px}
+.tog{width:22px;height:12px;border-radius:9px;background:var(--line);position:relative}.tog:after{content:"";position:absolute;top:2px;left:2px;width:8px;height:8px;border-radius:50%;background:#fff}.tog.on{background:var(--accent)}.tog.on:after{left:12px}
+.spacer{flex:1 1 0!important;min-height:0}.step{position:absolute;z-index:3;left:6px;top:-10px;width:24px;height:24px;border-radius:50%;background:var(--accent);color:#fff;display:grid;place-items:center;font-size:.68rem;font-weight:800;box-shadow:0 3px 10px #0008}
+.caption{text-align:center;font-size:.7rem;color:var(--muted);margin:9px 0 0;min-height:2.4em}
+.arrow{width:64px;flex:0 0 64px;margin-top:104px;height:64px;display:flex;flex-direction:column;align-items:center;justify-content:flex-end;color:var(--accent-text);position:relative;text-align:center}
+.arrow b{font-size:.62rem;width:17px;height:17px;border-radius:50%;border:1px solid var(--accent);display:grid;place-items:center;margin-bottom:3px}.arrow small{font-size:.56rem;line-height:1.15;color:var(--muted);margin-bottom:4px}
+.arrow i{display:block;width:100%;height:0;border-top:2px solid var(--accent);position:relative}.arrow i:after{content:"";position:absolute;right:-1px;top:-5px;border:4px solid transparent;border-left:7px solid var(--accent);border-right:0}
+.cross{display:flex;align-items:center;justify-content:center;gap:10px;color:var(--muted);font-size:.78rem;padding:2px 14px}.cross:before,.cross:after{content:"";height:1px;background:var(--line);flex:1}.cross svg{width:19px;height:19px;stroke:var(--accent);fill:none;stroke-width:1.8}
+.alternates{max-width:1700px;margin:6px auto 20px;padding:0 22px}.alternates h2{font-size:.95rem;margin:0 0 9px}.altrow{display:flex;gap:11px;overflow-x:auto;padding:3px 1px 11px}
+.alt{width:210px;flex:0 0 210px;background:var(--paper);border:1px dashed var(--line);border-radius:12px;text-align:left;padding:12px}.alt:hover{border-color:var(--accent)}.alt b{display:block;font-size:.8rem;margin:8px 0 4px}.alt small{color:var(--muted);font-size:.68rem}
+.tag{font-size:.61rem;color:var(--muted);border:1px solid var(--line);border-radius:9px;padding:2px 6px}.foot{max-width:1700px;padding:0 22px 25px;margin:auto;color:var(--muted);font-size:.72rem}
+.overlay{position:fixed;inset:0;background:#000a;display:none;align-items:flex-end;justify-content:flex-end;z-index:9}.overlay.open{display:flex}
+.panel{height:min(100%,700px);width:min(430px,100%);overflow:auto;padding:24px;background:var(--paper);border-top:3px solid var(--accent);border-radius:17px 0 0 17px;box-shadow:var(--shadow)}.paneltop{display:flex;justify-content:space-between;gap:12px}
+.panel h2{font-size:1.3rem;margin:6px 0 13px}.panel h3{font-size:.84rem;margin:17px 0 4px}.panel p{font-size:.88rem;color:var(--muted)}.close{border:1px solid var(--line);border-radius:8px;background:var(--paper);padding:6px 10px;height:fit-content}
+.sr{position:absolute;width:1px;height:1px;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap}
+.lane.arrived{animation:arr 1s ease-out}@keyframes arr{0%{outline:3px solid var(--accent);box-shadow:0 0 0 8px #E5091433}100%{outline:1px solid transparent}}
+@media(max-width:700px){.head{display:block}.tools{margin-top:13px}.canvas{padding:8px 12px}.panel{height:min(82%,700px);width:100%;border-radius:17px 17px 0 0}.wordmark{height:32px}}
 @media(prefers-reduced-motion:reduce){*,*:before,*:after{scroll-behavior:auto!important;transition:none!important;animation:none!important}}
-</style>
-</head>
-<body>
-<header class="top">
-<div class="head">
-<div>
-<div class="eyebrow">Netflix · sketches móviles</div>
-<h1 class="titleline"><svg class="brandmark" role="img" aria-label="Símbolo propio de reproducción" viewBox="0 0 48 48"><rect width="48" height="48" rx="11" fill="#E50914"/><path d="M19 14l16 10-16 10z" fill="#fff"/><circle cx="10" cy="15" r="2" fill="#fff"/><circle cx="10" cy="24" r="2" fill="#fff"/><circle cx="10" cy="33" r="2" fill="#fff"/></svg><span>Secuencia de pantallas por rol</span></h1>
-<p>Recorridos generales del espectador y del creador (socio de contenido) basados en información pública. Wireframes propios de baja fidelidad; sin marcas gráficas, imágenes ni capturas oficiales.</p>
-<p class="academic">Ejercicio académico, no afiliado a Netflix.</p>
-</div>
-<div class="tools"><button type="button" class="tool" id="theme" aria-pressed="false">Tema claro</button><button type="button" class="tool" id="reset">Restablecer selección</button></div>
-</div>
-<div class="roles" role="group" aria-label="Seleccionar recorrido">
-<button type="button" class="rolebtn" data-role="viewer" aria-pressed="false"><svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/></svg> Espectador</button>
-<button type="button" class="rolebtn" data-role="creator" aria-pressed="false"><svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><rect x="3" y="6" width="18" height="13" rx="2"/><path d="M3 10h18M7 6l2 4M12 6l2 4M17 6l2 4"/></svg> Creador</button>
-</div>
-<div class="guide">Haz clic o usa el teclado para abrir el detalle de cada pantalla. En pantallas pequeñas, desliza horizontalmente por cada carril.</div>
-</header>
+</style></head><body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs><linearGradient id="g1" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#E50914"/><stop offset="1" stop-color="#B20710"/></linearGradient><symbol id="nicon" viewBox="0 0 28 48"><path d="M0 0h8v48H0z" fill="#B20710"/><path d="M20 0h8v48h-8z" fill="#B20710"/><path d="M0 0h8l20 48h-8z" fill="url(#g1)"/></symbol></defs></svg>
+<header class="top"><div class="hero-head"><div class="head"><div><div class="eyebrow">Práctica 06 · Diagrama de secuencia de pantallas</div>
+<h1 class="titleline"><svg class="wordmark" viewBox="0 0 190 40" role="img" aria-label="Netflix"><g fill="none" stroke="#E50914" stroke-width="6.5"><path d="M3.25 40V0M3.25 0L22 40M22 40V0" transform="translate(0 0)" /><path d="M52 3.25H34V36.75H52M34 20H48"/><path d="M56 3.25H80M68 3.25V40"/><path d="M90 40V3.25H108M90 20H104"/><path d="M118 0V36.75H136"/><path d="M148 0V40"/><path d="M158 0L180 40M180 0L158 40"/></g></svg></h1>
+<p class="sub">Secuencia de pantallas de la aplicación móvil con <b>2 roles</b> (espectador y titular de la cuenta) y <b>16 pantallas</b> entre compartidas y específicas, más 3 estados alternos.</p>
+<div class="chips"><span>2 roles</span><span>4 compartidas</span><span>12 específicas</span><span>3 estados alternos</span></div></div>
+<div class="tools"><button type="button" class="tool" id="theme" aria-pressed="false">Tema claro</button><button type="button" class="tool" id="reset">Restablecer selección</button></div></div>
+<p class="academic">Ejercicio académico, no afiliado a Netflix. La marca y el logotipo pertenecen a Netflix, Inc. y se usan solo con fines educativos; los bocetos de pantalla son propios y no son oficiales.</p></div>
+<div class="roles" role="group" aria-label="Seleccionar recorrido"><button type="button" class="rolebtn" data-role="viewer" aria-pressed="false"><svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/></svg> Espectador</button><button type="button" class="rolebtn" data-role="owner" aria-pressed="false"><svg viewBox="0 0 24 24"><path d="M12 3l8 3v6c0 5-3.5 8-8 9-4.5-1-8-4-8-9V6z"/><path d="M9 12l2 2 4-4"/></svg> Titular de la cuenta</button></div>
+<div class="guide">Haz clic en un rol para ir a su carril, o en una pantalla para ver su detalle. En pantallas pequeñas, desliza horizontalmente.</div></header>
 <div id="role-live" class="sr" aria-live="polite" aria-atomic="true"></div>
-<main class="canvas"><div class="lanes">
-
-<section class="lane" data-lane="viewer" aria-labelledby="viewer-heading">
-<div class="lanehead"><span class="icon" role="img" aria-label="Espectador"><svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/></svg></span><h2 id="viewer-heading" tabindex="-1">Espectador</h2><span class="hint">Netflix · aplicación para ver series y películas</span></div>
-<div class="flow">
-
-<div class="screen-wrap"><button type="button" class="phone" data-screen="v-login" aria-label="Pantalla 1: inicio de sesión del espectador"><span class="step">1</span><span class="notch"></span><span class="screen"><span class="status"></span><span class="appbar">Iniciar sesión</span><span class="block">Accede para ver series y películas</span><span class="label">Correo o teléfono</span><span class="field">Escribe aquí</span><span class="label">Contraseña</span><span class="field">••••••••</span><span class="spacer"></span><span class="buttonmock primary">Iniciar sesión</span><span class="tiny" style="text-align:center">¿Necesitas ayuda?</span></span></button><p class="caption">Inicio de sesión</p></div>
-<div class="arrow" aria-hidden="true">1</div>
-
-<div class="screen-wrap"><button type="button" class="phone" data-screen="v-profiles" aria-label="Pantalla 2: elegir perfil"><span class="step">2</span><span class="notch"></span><span class="screen"><span class="status"></span><span class="appbar">¿Quién está viendo?</span><span class="grid2"><span class="pf"><span class="cover square"></span>Perfil 1</span><span class="pf"><span class="cover square"></span>Perfil 2</span><span class="pf"><span class="cover square"></span>Niños</span><span class="pf"><span class="cover square"></span>Agregar</span></span><span class="spacer"></span><span class="buttonmock">Administrar perfiles</span></span></button><p class="caption">Elegir perfil</p></div>
-<div class="arrow" aria-hidden="true">2</div>
-
-<div class="screen-wrap"><button type="button" class="phone" data-screen="v-home" aria-label="Pantalla 3: inicio del espectador"><span class="step">3</span><span class="notch"></span><span class="screen"><span class="status"></span><span class="appbar">Inicio</span><span class="hero">Título destacado</span><span class="buttonmock primary">▷ Reproducir</span><span class="label">Continuar viendo</span><span class="thumbs"><i></i><i></i><i></i></span><span class="label">Tendencias ahora</span><span class="thumbs"><i></i><i></i><i></i></span><span class="spacer"></span><span class="tiny">Inicio · Novedades · Mi Netflix</span></span></button><p class="caption">Inicio</p></div>
-<div class="arrow" aria-hidden="true">3</div>
-
-<div class="screen-wrap"><button type="button" class="phone" data-screen="v-search" aria-label="Pantalla 4: buscar títulos"><span class="step">4</span><span class="notch"></span><span class="screen"><span class="status"></span><span class="appbar">Buscar</span><span class="field">Series, películas, géneros</span><span class="label">Principales búsquedas</span><span class="row"><span class="cover"></span><span>Título de ejemplo</span></span><span class="row"><span class="cover"></span><span>Otra serie</span></span><span class="row"><span class="cover"></span><span>Una película</span></span><span class="spacer"></span><span class="tiny">Inicio · Novedades · Mi Netflix</span></span></button><p class="caption">Buscar</p></div>
-<div class="arrow" aria-hidden="true">4</div>
-
-<div class="screen-wrap"><button type="button" class="phone" data-screen="v-detail" aria-label="Pantalla 5: detalle de un título"><span class="step">5</span><span class="notch"></span><span class="screen"><span class="status"></span><span class="appbar">Detalle del título</span><span class="hero" style="height:56px">Avance</span><span class="label">Título de ejemplo</span><span class="tiny">2025 · 16+ · 2 temporadas</span><span class="buttonmock primary">▷ Reproducir</span><span class="buttonmock">Descargar</span><span class="tiny">Sinopsis breve del título de ejemplo.</span><span class="spacer"></span><span class="tiny">Mi lista · Calificar · Compartir</span></span></button><p class="caption">Detalle del título</p></div>
-<div class="arrow" aria-hidden="true">5</div>
-
-<div class="screen-wrap"><button type="button" class="phone" data-screen="v-player" aria-label="Pantalla 6: reproductor"><span class="step">6</span><span class="notch"></span><span class="screen"><span class="status"></span><span class="appbar">Reproduciendo</span><span class="hero" style="height:80px">▷ T1 · E3</span><span class="label">Título de ejemplo</span><span class="tiny">0:42 ───────── 48:10</span><span class="buttonmock">⟲ 10　Pausa　10 ⟳</span><span class="row">Audio y subtítulos</span><span class="row">Episodios</span><span class="spacer"></span><span class="tiny" style="text-align:center">Siguiente episodio</span></span></button><p class="caption">Reproductor</p></div>
-<div class="arrow" aria-hidden="true">6</div>
-
-<div class="screen-wrap"><button type="button" class="phone" data-screen="v-list" aria-label="Pantalla 7: mi lista y descargas"><span class="step">7</span><span class="notch"></span><span class="screen"><span class="status"></span><span class="appbar">Mi lista</span><span class="tiny">Descargas · Mi lista</span><span class="label">Guardados</span><span class="grid2"><span class="poster">Título A</span><span class="poster">Título B</span><span class="poster">Título C</span><span class="poster">Título D</span></span><span class="spacer"></span><span class="tiny">Colección guardada</span></span></button><p class="caption">Mi lista · guardados</p></div>
-
-</div></section>
-
-<div class="cross" aria-label="Las reproducciones contribuyen a las métricas de audiencia del creador"><svg aria-hidden="true" viewBox="0 0 24 24"><path d="M5 12h13M13 6l6 6-6 6"/></svg><span>Reproducciones del espectador → métricas de audiencia del creador (relación conceptual, supuesto)</span></div>
-
-<section class="lane" data-lane="creator" aria-labelledby="creator-heading">
-<div class="lanehead"><span class="icon" role="img" aria-label="Creador"><svg viewBox="0 0 24 24"><rect x="3" y="6" width="18" height="13" rx="2"/><path d="M3 10h18M7 6l2 4M12 6l2 4M17 6l2 4"/></svg></span><h2 id="creator-heading" tabindex="-1">Creador</h2><span class="hint">Socio de contenido · herramientas para producciones (supuesto)</span></div>
-<div class="flow">
-
-<div class="screen-wrap"><button type="button" class="phone" data-screen="c-login" aria-label="Pantalla 1: acceso del creador"><span class="step">1</span><span class="notch"></span><span class="screen"><span class="status"></span><span class="appbar">Portal de socios</span><span class="block">Acceso para socios de contenido</span><span class="label">Correo de trabajo</span><span class="field">Escribe aquí</span><span class="label">Contraseña</span><span class="field">••••••••</span><span class="spacer"></span><span class="buttonmock primary">Iniciar sesión</span><span class="tiny" style="text-align:center">Verificación adicional</span></span></button><p class="caption">Acceso de socio</p></div>
-<div class="arrow" aria-hidden="true">1</div>
-
-<div class="screen-wrap"><button type="button" class="phone" data-screen="c-home" aria-label="Pantalla 2: panel principal del creador"><span class="step">2</span><span class="notch"></span><span class="screen"><span class="status"></span><span class="appbar">Inicio</span><span class="label">Resumen de producciones</span><span class="metric"><b>—</b><span>Títulos activos</span></span><span class="block">Tareas pendientes</span><span class="block">Comunicados y recursos</span><span class="spacer"></span><span class="tiny">Inicio · Audiencia · Catálogo · Perfil</span></span></button><p class="caption">Panel principal</p></div>
-<div class="arrow" aria-hidden="true">2</div>
-
-<div class="screen-wrap"><button type="button" class="phone" data-screen="c-audience" aria-label="Pantalla 3: audiencia de títulos"><span class="step">3</span><span class="notch"></span><span class="screen"><span class="status"></span><span class="appbar">Audiencia</span><span class="tiny">Resumen durante un periodo</span><span class="metric"><b>—</b><span>Horas vistas</span></span><span class="metric"><b>—</b><span>Posición en Top 10</span></span><span class="block">Tendencia de visualización ▱</span><span class="tiny">Datos de ejemplo; sin valores reales</span></span></button><p class="caption">Audiencia de títulos</p></div>
-<div class="arrow" aria-hidden="true">3</div>
-
-<div class="screen-wrap"><button type="button" class="phone" data-screen="c-catalog" aria-label="Pantalla 4: catálogo y lanzamientos"><span class="step">4</span><span class="notch"></span><span class="screen"><span class="status"></span><span class="appbar">Catálogo</span><span class="label">Lanzamientos</span><span class="row"><span class="cover"></span><span>Serie de ejemplo<br><span class="tiny">Serie · Temporada 1</span></span></span><span class="row"><span class="cover"></span><span>Película de ejemplo<br><span class="tiny">Película · 2025</span></span></span><span class="row"><span class="cover"></span><span>Documental de ejemplo<br><span class="tiny">Documental · 2024</span></span></span><span class="spacer"></span><span class="buttonmock">Ver catálogo</span></span></button><p class="caption">Catálogo y lanzamientos</p></div>
-<div class="arrow" aria-hidden="true">4</div>
-
-<div class="screen-wrap"><button type="button" class="phone" data-screen="c-profile" aria-label="Pantalla 5: perfil del creador"><span class="step">5</span><span class="notch"></span><span class="screen"><span class="status"></span><span class="appbar">Perfil del creador</span><span class="cover circle" style="align-self:center;width:54px;height:54px;flex-basis:54px"></span><span class="label" style="text-align:center">Nombre del creador</span><span class="tiny" style="text-align:center">Productora de ejemplo</span><span class="block">Biografía y créditos</span><span class="row">Títulos</span><span class="row">Equipo</span><span class="buttonmock primary">Administrar ficha</span></span></button><p class="caption">Perfil del creador</p></div>
-
-</div></section>
-
-</div></main>
-
-<section class="alternates"><h2>Estados alternos fuera del flujo principal</h2><div class="altrow">
-<button type="button" class="alt" data-screen="x-offline"><span class="tag">Espectador</span><b>Sin conexión</b><small>Solo se pueden ver los títulos descargados.</small></button>
-<button type="button" class="alt" data-screen="x-no-results"><span class="tag">Espectador</span><b>Búsqueda sin resultados</b><small>Estado genérico para una consulta sin coincidencias.</small></button>
-<button type="button" class="alt" data-screen="x-unavailable"><span class="tag">Espectador</span><b>Contenido no disponible</b><small>Estado genérico para un título que no puede reproducirse.</small></button>
-</div></section>
-
-<footer class="foot">Bocetos propios, creados para este ejercicio y no oficiales. Los nombres y datos dentro de las pantallas son ejemplos. El recorrido del creador es un supuesto académico. La disponibilidad de opciones puede variar según cuenta, región y versión de la aplicación.</footer>
-
-<div class="overlay" id="overlay" role="dialog" aria-modal="true" aria-labelledby="panel-title"><aside class="panel"><div class="paneltop"><div><div class="eyebrow" id="panel-role">Detalle de pantalla</div><h2 id="panel-title"></h2></div><button type="button" class="close" id="close" aria-label="Cerrar panel">Cerrar</button></div><div id="panel-body"></div></aside></div>
-
-<script>
-const details={
-'v-login':['Espectador','Inicio de sesión','Acceder a la aplicación para ver series y películas.','Campos de correo o teléfono y contraseña; acción de inicio de sesión; enlace de ayuda.','Inicia sesión → Elegir perfil.'],
-'v-profiles':['Espectador','Elegir perfil','Seleccionar quién está viendo para personalizar las recomendaciones.','Perfiles de ejemplo, perfil infantil, opción para agregar perfil y administrar perfiles.','Toca un perfil → Inicio.'],
-'v-home':['Espectador','Inicio','Explorar títulos destacados, continuar viendo y ver tendencias.','Título destacado con acción de reproducir, filas de contenido y barra de navegación inferior.','Toca Buscar → Buscar.'],
-'v-search':['Espectador','Buscar','Encontrar series, películas o géneros.','Campo de búsqueda y lista de principales búsquedas.','Selecciona un resultado → Detalle del título.'],
-'v-detail':['Espectador','Detalle del título','Ver la información de un título y decidir si reproducirlo, descargarlo o guardarlo.','Avance, título, año, clasificación, sinopsis breve, botones de reproducir y descargar, y acciones de Mi lista, calificar y compartir.','Toca Reproducir → Reproductor.'],
-'v-player':['Espectador','Reproductor','Controlar la reproducción del episodio o película.','Área de video, título, progreso, pausa, saltos de 10 segundos, audio y subtítulos, y lista de episodios.','Agrega el título a Mi lista y abre Mi Netflix → Mi lista.'],
-'v-list':['Espectador','Mi lista · guardados','Encontrar los títulos guardados y las descargas.','Pestañas de descargas y Mi lista, y cuadrícula de títulos guardados.','Selecciona un título para volver al detalle o al reproductor.'],
-'c-login':['Creador','Acceso de socio','Acceder a las herramientas para socios de contenido (supuesto académico).','Campos de acceso, acción de inicio de sesión y verificación adicional.','Inicia sesión → Panel principal.'],
-'c-home':['Creador','Panel principal','Consultar un resumen de producciones y entrar a las secciones del portal.','Resumen ilustrativo, tareas pendientes, comunicados y accesos a Audiencia, Catálogo y Perfil.','Toca Audiencia → Audiencia de títulos.'],
-'c-audience':['Creador','Audiencia de títulos','Consultar métricas generales de visualización de los títulos.','Indicadores sin datos reales (horas vistas y posición en Top 10) y representación de tendencia.','Toca Catálogo → Catálogo y lanzamientos.'],
-'c-catalog':['Creador','Catálogo y lanzamientos','Consultar los títulos publicados y los próximos lanzamientos.','Lista de serie, película y documental de ejemplo.','Selecciona Perfil → Perfil del creador.'],
-'c-profile':['Creador','Perfil del creador','Revisar el perfil, los créditos y las opciones generales de gestión.','Nombre, productora, biografía y secciones de títulos y equipo; acceso de administración ilustrativo.','El recorrido termina en el perfil.'],
-'x-offline':['Espectador','Sin conexión','Representar el estado de la aplicación sin conectividad.','Mensaje de estado; solo los títulos descargados siguen disponibles.','Abre Descargas para ver los títulos disponibles sin conexión.'],
-'x-no-results':['Espectador','Búsqueda sin resultados','Informar que la búsqueda no produjo coincidencias.','Consulta de ejemplo y mensaje de sin resultados.','Edita la búsqueda para intentarlo de nuevo.'],
-'x-unavailable':['Espectador','Contenido no disponible','Representar un título que no se puede reproducir o consultar.','Mensaje de contenido no disponible.','Regresa a Buscar o a Mi lista.']};
-
-const overlay=document.getElementById('overlay'),title=document.getElementById('panel-title'),body=document.getElementById('panel-body'),roleLabel=document.getElementById('panel-role'),closeBtn=document.getElementById('close');
-const backdrop=()=>document.querySelectorAll('body > :not(#overlay):not(#role-live):not(script)');
-let prior=null;
-
-function openPanel(id,el){
-  const d=details[id]; if(!d) return;
-  prior=el; roleLabel.textContent=d[0]; title.textContent=d[1]; body.replaceChildren();
-  for(const [heading,text] of [['Propósito',d[2]],['Elementos de la interfaz',d[3]],['Acción siguiente',d[4]]]){
-    const h=document.createElement('h3'); h.textContent=heading;
-    const p=document.createElement('p'); p.textContent=text; body.append(h,p);
-  }
-  backdrop().forEach(n=>n.inert=true);
-  overlay.classList.add('open'); closeBtn.focus();
-}
-function closePanel(){
-  overlay.classList.remove('open');
-  backdrop().forEach(n=>n.inert=false);
-  if(prior) prior.focus();
-}
+<main class="canvas"><div class="lanes"><section class="lane shared" data-lane="shared" aria-labelledby="shared-h"><div class="lanehead"><span class="badge"><svg viewBox="0 0 24 24"><circle cx="9" cy="8" r="3.5"/><circle cx="17" cy="9" r="2.5"/><path d="M2 20a7 7 0 0 1 14 0M15 15a5 5 0 0 1 7 5"/></svg></span><h2 id="shared-h" tabindex="-1">Compartidas</h2><span class="hint">Pantallas compartidas por ambos roles</span></div><div class="flow"><div class="screen-wrap"><button type="button" class="phone" data-screen="s-welcome" aria-label="Pantalla 1: Bienvenida"><span class="step">1</span><span class="notch"></span><span class="screen"><span class="status"></span><span class="appbar">Bienvenida</span><span class="hero" style="height:70px"><svg class="nlogo" viewBox="0 0 28 48" aria-hidden="true"><use href="#nicon"/></svg></span><span class="label">Series y películas sin límites</span><span class="tiny ">Disfruta donde quieras.</span><span class="spacer"></span><span class="buttonmock primary">Iniciar sesión</span><span class="buttonmock">Suscribirte</span></span></button><p class="caption">Bienvenida</p></div><div class="arrow" aria-hidden="true"><b>1</b><small>Toca Iniciar sesión</small><i></i></div><div class="screen-wrap"><button type="button" class="phone" data-screen="s-login" aria-label="Pantalla 2: Iniciar sesión"><span class="step">2</span><span class="notch"></span><span class="screen"><span class="status"></span><span class="appbar">Iniciar sesión</span><span class="block">Accede con tu cuenta</span><span class="label">Correo o teléfono</span><span class="field">Escribe aquí</span><span class="label">Contraseña</span><span class="field">••••••••</span><span class="spacer"></span><span class="buttonmock primary">Iniciar sesión</span><span class="tiny c">¿Necesitas ayuda?</span></span></button><p class="caption">Inicio de sesión</p></div><div class="arrow" aria-hidden="true"><b>2</b><small>Ingresa tus datos</small><i></i></div><div class="screen-wrap"><button type="button" class="phone" data-screen="s-profiles" aria-label="Pantalla 3: ¿Quién está viendo?"><span class="step">3</span><span class="notch"></span><span class="screen"><span class="status"></span><span class="appbar">¿Quién está viendo?</span><span class="grid2"><span class="pf"><span class="cover square"></span>Perfil 1</span><span class="pf"><span class="cover square"></span>Perfil 2</span><span class="pf"><span class="cover square"></span>Niños</span><span class="pf"><span class="cover square"></span>Agregar</span></span><span class="spacer"></span><span class="buttonmock">Administrar perfiles</span></span></button><p class="caption">Elegir perfil</p></div><div class="arrow" aria-hidden="true"><b>3</b><small>Elige un perfil</small><i></i></div><div class="screen-wrap"><button type="button" class="phone" data-screen="s-notif" aria-label="Pantalla 4: Notificaciones"><span class="step">4</span><span class="notch"></span><span class="screen"><span class="status"></span><span class="appbar">Notificaciones</span><span class="label">Novedades</span><span class="row"><span class="cover"></span><span>Nuevo episodio disponible<br><span class="tiny ">Hace 1 h</span></span></span><span class="row"><span class="cover"></span><span>Próximo estreno<br><span class="tiny ">Ayer</span></span></span><span class="row"><span class="cover"></span><span>Recomendado para ti<br><span class="tiny ">Hace 3 días</span></span></span><span class="spacer"></span><span class="tiny ">Avisos de la cuenta y del catálogo</span></span></button><p class="caption">Notificaciones</p></div></div></section><div class="cross"><svg aria-hidden="true" viewBox="0 0 24 24"><path d="M12 4v13M6 12l6 6 6-6"/></svg><span>Después de elegir perfil, cada rol sigue su propio recorrido</span></div><section class="lane viewer" data-lane="viewer" aria-labelledby="viewer-h"><div class="lanehead"><span class="badge"><svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/></svg></span><h2 id="viewer-h" tabindex="-1">Espectador</h2><span class="hint">Pantallas específicas · ver series y películas</span></div><div class="flow"><div class="screen-wrap"><button type="button" class="phone" data-screen="v-home" aria-label="Pantalla 5: Inicio"><span class="step">5</span><span class="notch"></span><span class="screen"><span class="status"></span><span class="appbar">Inicio</span><span class="hero" style="height:58px">Título destacado</span><span class="buttonmock primary">▷ Reproducir</span><span class="label">Continuar viendo</span><span class="thumbs"><i></i><i></i><i></i></span><span class="label">Tendencias ahora</span><span class="thumbs"><i></i><i></i><i></i></span><span class="spacer"></span><span class="tiny ">Inicio · Novedades · Mi Netflix</span></span></button><p class="caption">Inicio</p></div><div class="arrow" aria-hidden="true"><b>5</b><small>Toca Buscar</small><i></i></div><div class="screen-wrap"><button type="button" class="phone" data-screen="v-search" aria-label="Pantalla 6: Buscar"><span class="step">6</span><span class="notch"></span><span class="screen"><span class="status"></span><span class="appbar">Buscar</span><span class="field">Series, películas, géneros</span><span class="label">Principales búsquedas</span><span class="row"><span class="cover"></span><span>Título de ejemplo</span></span><span class="row"><span class="cover"></span><span>Otra serie</span></span><span class="row"><span class="cover"></span><span>Una película</span></span><span class="spacer"></span><span class="tiny ">Inicio · Novedades · Mi Netflix</span></span></button><p class="caption">Buscar</p></div><div class="arrow" aria-hidden="true"><b>6</b><small>Elige un resultado</small><i></i></div><div class="screen-wrap"><button type="button" class="phone" data-screen="v-detail" aria-label="Pantalla 7: Detalle del título"><span class="step">7</span><span class="notch"></span><span class="screen"><span class="status"></span><span class="appbar">Detalle del título</span><span class="hero" style="height:54px">Avance</span><span class="label">Título de ejemplo</span><span class="tiny ">2025 · 16+ · 2 temporadas</span><span class="buttonmock primary">▷ Reproducir</span><span class="buttonmock">Descargar</span><span class="tiny ">Sinopsis breve de ejemplo.</span><span class="spacer"></span><span class="tiny ">Mi lista · Calificar · Compartir</span></span></button><p class="caption">Detalle del título</p></div><div class="arrow" aria-hidden="true"><b>7</b><small>Toca Reproducir</small><i></i></div><div class="screen-wrap"><button type="button" class="phone" data-screen="v-player" aria-label="Pantalla 8: Reproductor"><span class="step">8</span><span class="notch"></span><span class="screen"><span class="status"></span><span class="appbar">Reproductor</span><span class="hero" style="height:84px">▷ T1 · E3</span><span class="label">Título de ejemplo</span><span class="bar"><i></i></span><span class="tiny ">0:42 / 48:10</span><span class="buttonmock">⟲ 10　Pausa　10 ⟳</span><span class="row"><span>Audio y subtítulos</span></span><span class="spacer"></span><span class="tiny c">Siguiente episodio</span></span></button><p class="caption">Reproductor</p></div><div class="arrow" aria-hidden="true"><b>8</b><small>Descarga un episodio</small><i></i></div><div class="screen-wrap"><button type="button" class="phone" data-screen="v-down" aria-label="Pantalla 9: Descargas"><span class="step">9</span><span class="notch"></span><span class="screen"><span class="status"></span><span class="appbar">Descargas</span><span class="label">Listo para ver sin conexión</span><span class="row"><span class="cover"></span><span>Episodio 1<br><span class="tiny ">320 MB</span></span></span><span class="row"><span class="cover"></span><span>Episodio 2<br><span class="tiny ">315 MB</span></span></span><span class="row"><span class="cover"></span><span>Película de ejemplo<br><span class="tiny ">1,1 GB</span></span></span><span class="spacer"></span><span class="tiny ">Espacio usado: —</span><span class="buttonmock">Buscar más para descargar</span></span></button><p class="caption">Descargas</p></div><div class="arrow" aria-hidden="true"><b>9</b><small>Abre Mi Netflix</small><i></i></div><div class="screen-wrap"><button type="button" class="phone" data-screen="v-list" aria-label="Pantalla 10: Mi lista"><span class="step">10</span><span class="notch"></span><span class="screen"><span class="status"></span><span class="appbar">Mi lista</span><span class="label">Guardados</span><span class="grid2"><span class="poster">Título A</span><span class="poster">Título B</span><span class="poster">Título C</span><span class="poster">Título D</span></span><span class="spacer"></span><span class="tiny ">Colección guardada</span></span></button><p class="caption">Mi lista</p></div></div></section><div class="cross"><svg aria-hidden="true" viewBox="0 0 24 24"><path d="M12 4v13M6 12l6 6 6-6"/></svg><span>Lo que ve cada perfil queda en la Actividad de visualización del titular</span></div><section class="lane owner" data-lane="owner" aria-labelledby="owner-h"><div class="lanehead"><span class="badge"><svg viewBox="0 0 24 24"><path d="M12 3l8 3v6c0 5-3.5 8-8 9-4.5-1-8-4-8-9V6z"/><path d="M9 12l2 2 4-4"/></svg></span><h2 id="owner-h" tabindex="-1">Titular de la cuenta</h2><span class="hint">Pantallas específicas · administrar la cuenta</span></div><div class="flow"><div class="screen-wrap"><button type="button" class="phone" data-screen="o-account" aria-label="Pantalla 5: Cuenta"><span class="step">5</span><span class="notch"></span><span class="screen"><span class="status"></span><span class="appbar">Cuenta</span><span class="label">Titular de la cuenta</span><span class="row"><span>Correo<br><span class="tiny ">a***@correo.com</span></span></span><span class="row"><span>Membresía<br><span class="tiny ">Plan de ejemplo</span></span></span><span class="row"><span>Perfiles<br><span class="tiny ">4 perfiles</span></span></span><span class="spacer"></span><span class="buttonmock">Cerrar sesión</span></span></button><p class="caption">Cuenta</p></div><div class="arrow" aria-hidden="true"><b>5</b><small>Toca Membresía</small><i></i></div><div class="screen-wrap"><button type="button" class="phone" data-screen="o-plan" aria-label="Pantalla 6: Membresía y plan"><span class="step">6</span><span class="notch"></span><span class="screen"><span class="status"></span><span class="appbar">Membresía y plan</span><span class="label">Plan actual</span><span class="block">Plan de ejemplo<br>Calidad · pantallas</span><span class="label">Cambiar de plan</span><span class="row">Con anuncios<span class="spacer"></span><span class="tog"></span></span><span class="row">Estándar<span class="spacer"></span><span class="tog on"></span></span><span class="spacer"></span><span class="buttonmock primary">Cambiar plan</span><span class="tiny c">Cancelar membresía</span></span></button><p class="caption">Membresía y plan</p></div><div class="arrow" aria-hidden="true"><b>6</b><small>Toca Pagos</small><i></i></div><div class="screen-wrap"><button type="button" class="phone" data-screen="o-pay" aria-label="Pantalla 7: Pagos y facturación"><span class="step">7</span><span class="notch"></span><span class="screen"><span class="status"></span><span class="appbar">Pagos y facturación</span><span class="label">Método de pago</span><span class="block">Tarjeta •••• 0000</span><span class="label">Historial de cobros</span><span class="row"><span>Mes actual<br><span class="tiny ">—</span></span></span><span class="row"><span>Mes anterior<br><span class="tiny ">—</span></span></span><span class="spacer"></span><span class="buttonmock primary">Actualizar pago</span></span></button><p class="caption">Pagos y facturación</p></div><div class="arrow" aria-hidden="true"><b>7</b><small>Toca Perfiles</small><i></i></div><div class="screen-wrap"><button type="button" class="phone" data-screen="o-manage" aria-label="Pantalla 8: Administrar perfiles"><span class="step">8</span><span class="notch"></span><span class="screen"><span class="status"></span><span class="appbar">Administrar perfiles</span><span class="grid2"><span class="pf"><span class="cover square"></span>Perfil 1</span><span class="pf"><span class="cover square"></span>Perfil 2</span><span class="pf"><span class="cover square"></span>Niños</span><span class="pf"><span class="cover square"></span>Agregar</span></span><span class="row">Control parental<span class="spacer"></span><span class="tog on"></span></span><span class="spacer"></span><span class="buttonmock">Editar perfil</span></span></button><p class="caption">Administrar perfiles</p></div><div class="arrow" aria-hidden="true"><b>8</b><small>Toca Dispositivos</small><i></i></div><div class="screen-wrap"><button type="button" class="phone" data-screen="o-devices" aria-label="Pantalla 9: Dispositivos"><span class="step">9</span><span class="notch"></span><span class="screen"><span class="status"></span><span class="appbar">Dispositivos</span><span class="label">Dispositivos con sesión</span><span class="row"><span class="cover"></span><span>Teléfono<br><span class="tiny ">Activo hoy</span></span></span><span class="row"><span class="cover"></span><span>Televisor<br><span class="tiny ">Hace 2 días</span></span></span><span class="row"><span class="cover"></span><span>Computadora<br><span class="tiny ">Hace 1 semana</span></span></span><span class="spacer"></span><span class="buttonmock">Cerrar sesión en todos</span></span></button><p class="caption">Dispositivos</p></div><div class="arrow" aria-hidden="true"><b>9</b><small>Revisa actividad</small><i></i></div><div class="screen-wrap"><button type="button" class="phone" data-screen="o-activity" aria-label="Pantalla 10: Actividad de visualización"><span class="step">10</span><span class="notch"></span><span class="screen"><span class="status"></span><span class="appbar">Actividad de visualización</span><span class="label">Perfil 2</span><span class="row"><span>Título de ejemplo<br><span class="tiny ">Visto hoy</span></span></span><span class="row"><span>Otra serie<br><span class="tiny ">Visto ayer</span></span></span><span class="row"><span>Una película<br><span class="tiny ">Visto el lunes</span></span></span><span class="spacer"></span><span class="buttonmock">Descargar actividad</span><span class="tiny c">El recorrido termina aquí.</span></span></button><p class="caption">Actividad de visualización</p></div></div></section></div></main>
+<section class="alternates"><h2>Estados alternos fuera del flujo principal</h2><div class="altrow"><button type="button" class="alt" data-screen="x-offline"><span class="tag">Espectador</span><b>Sin conexión</b><small>Representar la app sin conectividad.</small></button><button type="button" class="alt" data-screen="x-no-results"><span class="tag">Espectador</span><b>Búsqueda sin resultados</b><small>Informar que la búsqueda no produjo coincidencias.</small></button><button type="button" class="alt" data-screen="x-unavailable"><span class="tag">Espectador</span><b>Contenido no disponible</b><small>Representar un título que no puede reproducirse.</small></button></div></section>
+<footer class="foot">Los nombres, precios y datos dentro de las pantallas son ejemplos. La disponibilidad de opciones puede variar según cuenta, región y versión de la aplicación.</footer>
+<div class="overlay" id="overlay" role="dialog" aria-modal="true" aria-labelledby="panel-title"><aside class="panel"><div class="paneltop"><div><div class="eyebrow" id="panel-role"></div><h2 id="panel-title"></h2></div><button type="button" class="close" id="close" aria-label="Cerrar panel">Cerrar</button></div><div id="panel-body"></div></aside></div>
+<script>const details={"s-welcome": ["Compartida", "Bienvenida", "Presentar la app y ofrecer iniciar sesión o suscribirse.", "Logotipo, mensaje de bienvenida y dos botones.", "Toca Iniciar sesión → Inicio de sesión."], "s-login": ["Compartida", "Iniciar sesión", "Autenticar a cualquier persona que use la cuenta.", "Campos de correo o teléfono y contraseña, botón de acceso y ayuda.", "Inicia sesión → Elegir perfil."], "s-profiles": ["Compartida", "¿Quién está viendo?", "Elegir el perfil con el que se usará la app.", "Perfiles de ejemplo, perfil infantil, agregar perfil y administrar perfiles.", "Perfil de espectador → Inicio. Perfil del titular → Cuenta."], "s-notif": ["Compartida", "Notificaciones", "Mostrar avisos de estrenos, recordatorios y de la cuenta.", "Lista de notificaciones con título y fecha.", "Toca un aviso → abre el título o la sección correspondiente."], "v-home": ["Espectador", "Inicio", "Explorar destacados, continuar viendo y ver tendencias.", "Título destacado, filas de contenido y barra inferior.", "Toca Buscar → Buscar."], "v-search": ["Espectador", "Buscar", "Encontrar series, películas o géneros.", "Campo de búsqueda y lista de principales búsquedas.", "Selecciona un resultado → Detalle del título."], "v-detail": ["Espectador", "Detalle del título", "Decidir si reproducir, descargar o guardar un título.", "Avance, datos, sinopsis, reproducir, descargar y acciones.", "Toca Reproducir → Reproductor."], "v-player": ["Espectador", "Reproductor", "Controlar la reproducción de un episodio o película.", "Video, progreso, pausa, saltos de 10 s, audio y subtítulos.", "Toca Descargar en el episodio → Descargas."], "v-down": ["Espectador", "Descargas", "Ver los títulos descargados, incluso sin conexión.", "Lista de descargas con tamaño y botón para buscar más.", "Abre Mi Netflix → Mi lista."], "v-list": ["Espectador", "Mi lista", "Encontrar los títulos que se guardaron.", "Cuadrícula de títulos guardados.", "Selecciona un título → Detalle del título."], "o-account": ["Titular", "Cuenta", "Ver el resumen de la cuenta y entrar a su administración.", "Datos del titular, plan, perfiles y cerrar sesión.", "Toca Membresía → Membresía y plan."], "o-plan": ["Titular", "Membresía y plan", "Consultar o cambiar el plan y la membresía.", "Plan actual, opciones de plan y acciones de cambio o cancelación.", "Toca Pagos → Pagos y facturación."], "o-pay": ["Titular", "Pagos y facturación", "Revisar y actualizar el método de pago y los cobros.", "Método de pago, historial de facturación y botón de actualizar.", "Toca Perfiles → Administrar perfiles."], "o-manage": ["Titular", "Administrar perfiles", "Crear, editar y limitar perfiles, incluido el infantil.", "Perfiles, control parental y edición.", "Toca Dispositivos → Dispositivos."], "o-devices": ["Titular", "Dispositivos", "Ver dónde está iniciada la sesión y cerrarla.", "Lista de dispositivos y cierre de sesión global.", "Toca Actividad → Actividad de visualización."], "o-activity": ["Titular", "Actividad de visualización", "Revisar lo que ha visto cada perfil.", "Lista de títulos vistos por perfil, con fecha.", "El recorrido termina aquí."], "x-offline": ["Espectador", "Sin conexión", "Representar la app sin conectividad.", "Mensaje de estado; solo los títulos descargados siguen disponibles.", "Abre Descargas."], "x-no-results": ["Espectador", "Búsqueda sin resultados", "Informar que la búsqueda no produjo coincidencias.", "Consulta de ejemplo y mensaje sin resultados.", "Edita la búsqueda."], "x-unavailable": ["Espectador", "Contenido no disponible", "Representar un título que no puede reproducirse.", "Mensaje de contenido no disponible.", "Regresa a Buscar o a Mi lista."]};const overlay=document.getElementById('overlay'),title=document.getElementById('panel-title'),body=document.getElementById('panel-body'),roleLabel=document.getElementById('panel-role'),closeBtn=document.getElementById('close');
+const bg=()=>document.querySelectorAll('body > :not(#overlay):not(#role-live):not(script)');let prior=null;
+function openPanel(id,el){const d=details[id];if(!d)return;prior=el;roleLabel.textContent=d[0];title.textContent=d[1];body.replaceChildren();
+for(const[h,t]of[['Propósito',d[2]],['Elementos de la interfaz',d[3]],['Acción siguiente',d[4]]]){const a=document.createElement('h3');a.textContent=h;const p=document.createElement('p');p.textContent=t;body.append(a,p)}
+bg().forEach(n=>n.inert=true);overlay.classList.add('open');closeBtn.focus()}
+function closePanel(){overlay.classList.remove('open');bg().forEach(n=>n.inert=false);if(prior)prior.focus()}
 document.querySelectorAll('[data-screen]').forEach(el=>el.addEventListener('click',()=>openPanel(el.dataset.screen,el)));
-closeBtn.addEventListener('click',closePanel);
-overlay.addEventListener('click',e=>{if(e.target===overlay)closePanel()});
+closeBtn.addEventListener('click',closePanel);overlay.addEventListener('click',e=>{if(e.target===overlay)closePanel()});
 document.addEventListener('keydown',e=>{if(e.key==='Escape'&&overlay.classList.contains('open'))closePanel()});
-
-const roleNames={viewer:'espectador',creator:'creador'};
-document.querySelectorAll('.rolebtn').forEach(b=>b.addEventListener('click',()=>{
-  const selected=b.dataset.role;
-  document.querySelectorAll('.rolebtn').forEach(x=>x.setAttribute('aria-pressed',String(x===b)));
-  document.querySelectorAll('.lane').forEach(l=>l.classList.toggle('dim',l.dataset.lane!==selected));
-  const lane=document.querySelector('.lane[data-lane="'+selected+'"]');
-  const heading=lane.querySelector('.lanehead h2');
-  const canvas=document.querySelector('.canvas');
-  const reduce=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  const margin=24, rect=lane.getBoundingClientRect();
-  const fullyVisible=rect.top>=margin&&rect.bottom<=window.innerHeight;
-  canvas.scrollTo({left:0,behavior:reduce?'auto':'smooth'});
-  if(!fullyVisible) window.scrollTo({top:Math.max(0,window.scrollY+rect.top-margin),behavior:reduce?'auto':'smooth'});
-  heading.focus({preventScroll:true});
-  document.getElementById('role-live').textContent='Mostrando el recorrido del '+roleNames[selected]+'.';
-  if(!reduce){
-    lane.classList.remove('arrived'); void lane.offsetWidth; lane.classList.add('arrived');
-    lane.addEventListener('animationend',()=>lane.classList.remove('arrived'),{once:true});
-  }
-}));
-document.getElementById('theme').addEventListener('click',e=>{
-  const light=document.body.classList.toggle('light');
-  e.currentTarget.setAttribute('aria-pressed',String(light));
-});
-document.getElementById('reset').addEventListener('click',()=>{
-  document.querySelectorAll('.rolebtn').forEach(b=>b.setAttribute('aria-pressed','false'));
-  document.querySelectorAll('.lane').forEach(l=>l.classList.remove('dim'));
-});
-</script>
-</body>
-</html>
+const names={viewer:'espectador',owner:'titular de la cuenta'};
+document.querySelectorAll('.rolebtn').forEach(b=>b.addEventListener('click',()=>{const s=b.dataset.role;
+document.querySelectorAll('.rolebtn').forEach(x=>x.setAttribute('aria-pressed',String(x===b)));
+document.querySelectorAll('.lane:not(.shared)').forEach(l=>l.classList.toggle('dim',l.dataset.lane!==s));
+const lane=document.querySelector('.lane[data-lane="'+s+'"]'),h=lane.querySelector('h2'),reduce=matchMedia('(prefers-reduced-motion: reduce)').matches,r=lane.getBoundingClientRect();
+document.querySelector('.canvas').scrollTo({left:0,behavior:reduce?'auto':'smooth'});
+if(!(r.top>=24&&r.bottom<=innerHeight))scrollTo({top:Math.max(0,scrollY+r.top-24),behavior:reduce?'auto':'smooth'});
+h.focus({preventScroll:true});document.getElementById('role-live').textContent='Mostrando el recorrido del '+names[s]+'.';
+if(!reduce){lane.classList.remove('arrived');void lane.offsetWidth;lane.classList.add('arrived');lane.addEventListener('animationend',()=>lane.classList.remove('arrived'),{once:true})}}));
+document.getElementById('theme').addEventListener('click',e=>e.currentTarget.setAttribute('aria-pressed',String(document.body.classList.toggle('light'))));
+document.getElementById('reset').addEventListener('click',()=>{document.querySelectorAll('.rolebtn').forEach(b=>b.setAttribute('aria-pressed','false'));document.querySelectorAll('.lane').forEach(l=>l.classList.remove('dim'))});
+</script></body></html>
