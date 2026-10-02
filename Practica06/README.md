@@ -1,5 +1,7 @@
 # Práctica 06 – Diagrama de Secuencia de Pantallas (Sketches) de Netflix
 
+**Persona / Autor:** Jennifer Bautista Barrios · Modalidad individual
+
 Diagrama interactivo de **secuencia de pantallas** de la aplicación móvil de **Netflix**, con **2 roles** (espectador y titular de la cuenta) y **16 pantallas** entre compartidas y específicas, más 3 estados alternos. Cada pantalla es clicable y abre un panel con su propósito, sus elementos y la acción siguiente.
 
 **[Ver el diagrama en GitHub Pages](https://jffa25.github.io/Practicas_Integradora_230417/Practica06/netflix-secuencia-pantallas.html)**
@@ -45,6 +47,6 @@ Salida: un HTML autocontenido para GitHub Pages.
 - Logotipo de Netflix, paleta, tema claro/oscuro: sí
 - Se ve bien en celular real y en GitHub Pages: por confirmar al publicar
 
-## Autor
+## Persona / Autor
 
-- **Jose Francisco Flores Amador** / [@JFFA25](https://github.com/JFFA25)
+- **Jennifer Bautista Barrios**
