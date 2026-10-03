@@ -12,7 +12,7 @@ Cada pantalla puede seleccionarse para abrir un panel con información sobre su 
 
 ### 🌐 Ver el proyecto
 
-**[Ver el diagrama en GitHub Pages]()**
+**[Ver el diagrama en GitHub Pages](https://jenniferbautistabarrios.github.io/Practicas-Integradora/Practica06/netflix-secuencia-pantallas.html)**
 
 <p align="center">
   <img src="netflix-secuencia-pantallas.preview.dark.png" alt="Vista previa del diagrama" width="90%">
