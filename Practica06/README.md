@@ -1,52 +1,155 @@
-# Práctica 06 – Diagrama de Secuencia de Pantallas (Sketches) de Netflix
+# 🎬 Práctica 06 – Diagrama de Secuencia de Pantallas (Sketches) de Netflix
 
-**Persona / Autor:** Jennifer Bautista Barrios · Modalidad individual
+**Persona / Autor:** Jennifer Bautista Barrios · **Modalidad:** Individual
 
-Diagrama interactivo de **secuencia de pantallas** de la aplicación móvil de **Netflix**, con **2 roles** (espectador y titular de la cuenta) y **16 pantallas** entre compartidas y específicas, más 3 estados alternos. Cada pantalla es clicable y abre un panel con su propósito, sus elementos y la acción siguiente.
+## 📖 Descripción
 
-**[Ver el diagrama en GitHub Pages](https://jffa25.github.io/Practicas_Integradora_230417/Practica06/netflix-secuencia-pantallas.html)**
+En esta práctica se realizó un **diagrama interactivo de secuencia de pantallas** de la aplicación móvil de **Netflix**, utilizando sketches de baja fidelidad para representar el flujo de navegación.
 
-![Vista previa del diagrama](netflix-secuencia-pantallas.preview.dark.png)
+El diagrama cuenta con **2 roles principales**: espectador y titular de la cuenta, además de **16 pantallas principales** y **3 estados alternos**.
 
-<p align="center"><img src="netflix-logo.svg" alt="Netflix" height="40"></p>
+Cada pantalla puede seleccionarse para abrir un panel con información sobre su propósito, elementos principales y la acción que permite continuar con el flujo.
 
-## Pantallas (16 + 3 estados alternos)
+### 🌐 Ver el proyecto
 
-| Carril | Pantallas |
-|---|---|
-| **Compartidas** (4) | 1 Bienvenida · 2 Inicio de sesión · 3 Elegir perfil · 4 Notificaciones |
-| **Espectador** (6) | 5 Inicio · 6 Buscar · 7 Detalle del título · 8 Reproductor · 9 Descargas · 10 Mi lista |
-| **Titular de la cuenta** (6) | 5 Cuenta · 6 Membresía y plan · 7 Pagos y facturación · 8 Administrar perfiles · 9 Dispositivos · 10 Actividad de visualización |
-| **Estados alternos** (3) | Sin conexión · Búsqueda sin resultados · Contenido no disponible |
+**[Ver el diagrama en GitHub Pages]()**
 
-Las flechas numeradas indican la acción que lleva a la siguiente pantalla (por ejemplo, "Toca Reproducir"). Una flecha entre carriles muestra que lo que ve cada perfil queda en la **Actividad de visualización** del titular.
+<p align="center">
+  <img src="netflix-secuencia-pantallas.preview.dark.png" alt="Vista previa del diagrama" width="90%">
+</p>
 
-## Nota académica
+<p align="center">
+  <img src="netflix-logo.svg" alt="Netflix" height="40">
+</p>
 
-Ejercicio académico, no afiliado a Netflix. La marca y el logotipo pertenecen a Netflix, Inc. y se usan solo con fines educativos. Los archivos `netflix-logo.svg` y `netflix-icon.svg` son una recreación vectorial hecha para esta práctica, no los archivos oficiales. Los bocetos de pantalla son propios y de baja fidelidad; los nombres y datos son ejemplos.
+---
 
-## Prompt usado con Archify
+## 🎯 Objetivo
 
-```
+Representar de forma visual y ordenada el flujo de navegación de una aplicación móvil, identificando las pantallas, acciones del usuario, roles y diferentes situaciones que pueden presentarse durante el uso de la aplicación.
+
+---
+
+## 👥 Roles y pantallas
+
+### 🔴 Compartidas – 4 pantallas
+
+1. Bienvenida
+2. Inicio de sesión
+3. Elegir perfil
+4. Notificaciones
+
+### 🎬 Espectador – 6 pantallas
+
+5. Inicio
+6. Buscar
+7. Detalle del título
+8. Reproductor
+9. Descargas
+10. Mi lista
+
+### 👤 Titular de la cuenta – 6 pantallas
+
+5. Cuenta
+6. Membresía y plan
+7. Pagos y facturación
+8. Administrar perfiles
+9. Dispositivos
+10. Actividad de visualización
+
+### ⚠️ Estados alternos
+
+* Sin conexión
+* Búsqueda sin resultados
+* Contenido no disponible
+
+Las **flechas numeradas** indican la acción que permite pasar de una pantalla a otra. También se incluye una conexión entre los roles para representar cómo la actividad de los perfiles puede reflejarse en la **Actividad de visualización** del titular.
+
+---
+
+## 🖱️ Interactividad
+
+El diagrama incluye diferentes elementos interactivos:
+
+* Panel de información por pantalla.
+* Selección de rol.
+* Desplazamiento entre carriles.
+* Tema claro y oscuro.
+* Botón para restablecer.
+* Flechas con acciones de navegación.
+* Diseño responsive.
+
+También se consideraron aspectos de accesibilidad como **navegación mediante teclado, foco visible, `aria-live` y `prefers-reduced-motion`**.
+
+---
+
+## 🛠️ Herramientas utilizadas
+
+* **Archify** – Generación del diagrama.
+* **HTML, CSS y JavaScript** – Estructura e interactividad.
+* **SVG** – Logotipo utilizado en la práctica.
+* **GitHub** – Control y almacenamiento del proyecto.
+* **GitHub Pages** – Publicación del diagrama.
+
+---
+
+## 🤖 Prompt usado con Archify
+
+```text
 Usa Archify para generar el Diagrama de Secuencia de Pantallas (Sketches) de la aplicación móvil de Netflix, con 2 roles: espectador y titular de la cuenta, y al menos 15 pantallas entre compartidas y específicas.
 
 - Carril "Compartidas": bienvenida, inicio de sesión, elegir perfil, notificaciones.
 - Carril "Espectador": inicio, buscar, detalle del título, reproductor, descargas, Mi lista.
 - Carril "Titular de la cuenta": cuenta, membresía y plan, pagos y facturación, administrar perfiles, dispositivos, actividad de visualización.
-- Flechas numeradas con la acción que dispara cada cambio, y una flecha entre carriles (la actividad de cada perfil llega al titular).
+- Flechas numeradas con la acción que dispara cada cambio.
 - Estados alternos: sin conexión, búsqueda sin resultados y contenido no disponible.
-- Interacción: panel de detalle por pantalla, selección de rol con desplazamiento al carril, tema claro/oscuro y restablecer.
-- Paleta de Netflix (#E50914, #141414), accesible (teclado, foco visible, aria-live, prefers-reduced-motion) y responsive.
+- Panel de detalle por pantalla, selección de rol, tema claro/oscuro y restablecer.
+- Paleta de Netflix (#E50914, #141414), accesible y responsive.
 Salida: un HTML autocontenido para GitHub Pages.
 ```
 
-## Revisión del resultado
+---
 
-- 2 roles y al menos 15 pantallas (compartidas y específicas): sí (16 + 3 alternos)
-- Flechas numeradas con acción, estados alternos y flecha entre carriles: sí
-- Logotipo de Netflix, paleta, tema claro/oscuro: sí
-- Se ve bien en celular real y en GitHub Pages: por confirmar al publicar
+## ✅ Revisión del resultado
 
-## Persona / Autor
+| Requisito                   | Resultado |
+| --------------------------- | --------- |
+| 2 roles                     | ✅         |
+| 15+ pantallas               | ✅ 16      |
+| Estados alternos            | ✅ 3       |
+| Flechas numeradas           | ✅         |
+| Interactividad              | ✅         |
+| Tema claro/oscuro           | ✅         |
+| Diseño responsive           | ✅         |
+| Accesibilidad               | ✅         |
+| Publicación en GitHub Pages | ✅         |
 
-- **Jennifer Bautista Barrios**
+---
+
+## 📚 Aprendizaje
+
+Esta práctica permitió comprender mejor cómo organizar el **flujo de navegación de una aplicación**, identificando las acciones que realiza el usuario y la relación entre las diferentes pantallas.
+
+También permitió trabajar con roles, estados alternos y elementos interactivos, además de conocer la importancia de realizar sketches antes de desarrollar una interfaz completa.
+
+---
+
+## 🎓 Conclusión
+
+El resultado final representa de manera visual e interactiva la secuencia de pantallas de una aplicación similar a Netflix. La separación por roles facilita comprender las funciones disponibles para cada usuario y las flechas permiten identificar claramente el flujo de navegación.
+
+La práctica también permitió reforzar conocimientos sobre **diseño de interfaces, navegación, accesibilidad y representación de sistemas mediante diagramas**.
+
+---
+
+## ⚠️ Nota académica
+
+Ejercicio académico, no afiliado a Netflix. La marca y el logotipo pertenecen a Netflix, Inc. y se utilizan únicamente con fines educativos.
+
+Los archivos `netflix-logo.svg` y `netflix-icon.svg` son recreaciones vectoriales realizadas para esta práctica. Los bocetos, nombres y datos utilizados son ejemplos propios con fines académicos.
+
+---
+
+## 👩‍💻 Persona / Autor
+
+**Jennifer Bautista Barrios**
