@@ -1,10 +1,9 @@
-
-
 # 🌸 Repositorio de Prácticas — Integradora
 
 <p align="center">
   <img src="./LOGOS-CARRERAS-TI.png" alt="Logo de la escuela" width="500">
 </p>
+
 Bienvenido a mi repositorio de prácticas de la materia **Integradora**. 💗
 
 En este repositorio se encuentran las diferentes prácticas realizadas durante el curso, junto con sus respectivas evidencias y actividades.
@@ -18,8 +17,10 @@ En este repositorio se encuentran las diferentes prácticas realizadas durante e
 | **01** | Metodología de Evaluación de la Asignatura | 5 | **Finalizada ✅** |
 | **02** | [Boceto de Arquitectura de Proyecto Integrador con Archify](https://jenniferbautistabarrios.github.io/Practicas-Integradora/Practica02/index.html) | 24 | **Finalizada ✅** |
 | **03** | [Boceto de Modelo Canvas con Archify](https://github.com/JenniferBautistaBarrios/Practicas-Integradora/tree/main/Practica03) | 10 | **Finalizada ✅** |
+| **06** | [Diagrama de Secuencia de Pantallas (Sketches) de Aplicación Móvil con 2 Roles de una Aplicación Elegida](https://jenniferbautistabarrios.github.io/Practicas-Integradora/Practica06/index.html) | 20 | **Finalizada ✅** |
 
----ñ
+---
+
 ## 🌷 Prácticas realizadas
 
 ### 💗 Práctica 01
@@ -44,6 +45,14 @@ Elaboración de un boceto del **Modelo Canvas** utilizando Archify para represen
 
 👉 [Ver Práctica 03](https://jenniferbautistabarrios.github.io/Practicas-Integradora/Practica03/index.html)
 
+### 💗 Práctica 06
+
+**Diagrama de Secuencia de Pantallas (Sketches) de Aplicación Móvil con 2 Roles de una Aplicación Elegida**
+
+Diseño y desarrollo del diagrama de secuencia de pantallas (sketches) para una aplicación móvil contemplando el flujo de navegación de dos roles distintos dentro de la aplicación elegida.
+
+👉 [Ver Práctica 06](https://jenniferbautistabarrios.github.io/Practicas-Integradora/Practica06/index.html)
+
 ---
 
 ## 💕 Estado del repositorio
@@ -59,6 +68,7 @@ Todas las prácticas registradas actualmente se encuentran **finalizadas**. ✅
 - 💻 **Git & GitHub**
 - 🌸 **Archify**
 - 📐 Modelado y arquitectura de software
+- 📱 Diseño de interfaces y diagramación móvil
 - 📚 Documentación de proyectos
 - 🎨 Diseño de modelos y diagramas
 
