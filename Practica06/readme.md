@@ -66,23 +66,15 @@ Diseñar y documentar un diagrama interactivo que represente la secuencia de pan
 
 ---
 
-## 🖥️ 03. Diagrama interactivo
+## 🖥️ 03. Diagrama
 
-<div align="center">
+<p align="center">
+  <img src="./captura sketches.png" alt="Logo de la escuela" width="500">
+</p>
 
-### 🔴 ¡Explora las pantallas!
+Accede a la versión publicada del proyecto y navega por las diferentes maquetas
 
-Accede a la versión publicada del proyecto y navega por las diferentes maquetas.
 
-<a href="https://jenniferbautistabautista.github.io/Practicas-Integradora/Practica06/netflix-secuencia-pantallas.html">
-  <img src="https://img.shields.io/badge/ABRIR_PROYECTO-E50914?style=for-the-badge&logo=netflix&logoColor=white" alt="Abrir proyecto de Netflix">
-</a>
-
-</div>
-
-El diagrama cuenta con tarjetas interactivas que permiten consultar las maquetas, identificar sus categorías y ampliar cada pantalla para observarla con mayor detalle.
-
----
 
 ## 🔄 04. Recorrido de navegación
 
