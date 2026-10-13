@@ -30,7 +30,7 @@
 
 <br>
 
-<a href="https://jenniferbautistabautista.github.io/Practicas-Integradora/Practica06/netflix-secuencia-pantallas.html">
+<a href="https://jenniferbautistabarrios.github.io/Practicas-Integradora/Practica06/sketches-moviles.html">
   <img src="https://img.shields.io/badge/▶_VER_DIAGRAMA_INTERACTIVO-E50914?style=for-the-badge&logo=netflix&logoColor=white" alt="Ver diagrama interactivo">
 </a>
 
@@ -157,7 +157,7 @@ El diagrama incorpora herramientas que permiten explorar las maquetas de manera 
 
 ## ⚙️ 08. Instrucciones de uso
 
-1. Abre el [diagrama interactivo de Netflix](https://jenniferbautistabautista.github.io/Practicas-Integradora/Practica06/netflix-secuencia-pantallas.html).
+1. Abre el [diagrama interactivo de Netflix](https://jenniferbautistabarrios.github.io/Practicas-Integradora/Practica06/sketches-moviles.html).
 2. Espera a que se cargue la página.
 3. Explora las tarjetas que representan las diferentes pantallas.
 4. Utiliza los filtros para visualizar una categoría.

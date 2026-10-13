@@ -1,5 +1,3 @@
-
-
 # 🌸 Repositorio de Prácticas — Integradora
 
 <p align="center">
@@ -18,8 +16,10 @@ En este repositorio se encuentran las diferentes prácticas realizadas durante e
 | **01** | Metodología de Evaluación de la Asignatura | 5 | **Finalizada ✅** |
 | **02** | [Boceto de Arquitectura de Proyecto Integrador con Archify](https://jenniferbautistabarrios.github.io/Practicas-Integradora/Practica02/index.html) | 24 | **Finalizada ✅** |
 | **03** | [Boceto de Modelo Canvas con Archify](https://github.com/JenniferBautistaBarrios/Practicas-Integradora/tree/main/Practica03) | 10 | **Finalizada ✅** |
+| **06** | [Diagrama de Secuencia de Pantallas (Sketches) de Aplicación Móvil con 2 Roles de una Aplicación Elegida](https://github.com/JenniferBautistaBarrios/Practicas-Integradora/tree/main/Practica06) | 20 | **Finalizada ✅** |
 
----ñ
+---
+
 ## 🌷 Prácticas realizadas
 
 ### 💗 Práctica 01
@@ -43,6 +43,14 @@ Desarrollo de un primer boceto de la arquitectura del proyecto integrador utiliz
 Elaboración de un boceto del **Modelo Canvas** utilizando Archify para representar los principales elementos relacionados con el proyecto integrador.
 
 👉 [Ver Práctica 03](https://jenniferbautistabarrios.github.io/Practicas-Integradora/Practica03/index.html)
+
+### 💖 Práctica 06
+
+**Diagrama de Secuencia de Pantallas (Sketches) de Aplicación Móvil con 2 Roles**
+
+Diseño del diagrama de secuencia de pantallas y bosquejos (*sketches*) interactivos orientados a la navegación de una aplicación móvil con dos roles distintos (enfocado en flujos estilo Netflix).
+
+👉 [Ver Práctica 06](https://github.com/JenniferBautistaBarrios/Practicas-Integradora/tree/main/Practica06)
 
 ---
 
